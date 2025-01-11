@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --no-eslint",
     "deploy": "npm run build && gh-pages -d dist",
     "lint": "vue-cli-service lint"
   },
@@ -16,8 +16,9 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
+    "@babel/core": "^7.26.0",
     "@babel/eslint-parser": "^7.12.16",
+    "@babel/preset-env": "^7.26.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
