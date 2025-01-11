@@ -1,30 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <CardTest />
   <div id="app">
     <h1>My Vue App</h1>
     <!-- 渲染路由內容 -->
-    <RouterLink to="/">Go to Home</RouterLink>
-    <RouterLink to="/about" @click="goToAbout()">Go to About</RouterLink>
+    <RouterLink to="/DayEn15" @click="transPage('/DayEn15')">DayEn15</RouterLink>
 
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-import CardTest from './components/CardTest.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    CardTest,
   },
   methods: {
-    goToAbout() {
-      this.$router.push('/about')
+    transPage(item) {
+      console.log("item",item)
+      this.$router.push(`${item}`);
     },
   },
 };
