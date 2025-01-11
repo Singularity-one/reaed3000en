@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="transPage('/')">回g.3頁</button>
+    <button @click="transPage('/')">回首頁</button>
     <RouterLink to="/dayOne" @click="transPage('/dayOne')">1</RouterLink>
   </div>
 </template>
