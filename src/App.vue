@@ -4,6 +4,7 @@
     <!-- 渲染路由內容 -->
     <RouterLink to="/DayEn15" @click="transPage('/DayEn15')">DayEn15</RouterLink>
     <RouterLink to="/excelUpdata" @click="transPage('/excelUpdata')">ExcelUpdata</RouterLink>
+    <RouterLink to="/excelView" @click="transPage('/excelView')">ExcelView</RouterLink>
 
     <router-view></router-view>
   </div>
