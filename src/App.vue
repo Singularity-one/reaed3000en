@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <h1>My Vue App</h1>
+    <h1>Learn 3000 English words</h1>
     <!-- 渲染路由內容 -->
-    <RouterLink to="/DayEn15" @click="transPage('/DayEn15')">DayEn15</RouterLink>
-    <RouterLink to="/excelUpdata" @click="transPage('/excelUpdata')">ExcelUpdata</RouterLink>
-    <RouterLink to="/excelView" @click="transPage('/excelView')">ExcelView</RouterLink>
+    <RouterLink to="/DayEn15" @click="transPage('/DayEn15')">DayEn15</RouterLink>&nbsp;
+    <RouterLink to="/excelUpdata" @click="transPage('/excelUpdata')">ExcelUpdata</RouterLink>&nbsp;
+    <RouterLink to="/excelView" @click="transPage('/excelView')">ExcelView</RouterLink>&nbsp;
+    <RouterLink to="/ListTry50" @click="transPage('/ListTry50')">ListTry50</RouterLink>&nbsp;
 
     <router-view></router-view>
   </div>
