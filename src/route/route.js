@@ -4,7 +4,8 @@ import dayOne from '../views/dayOne.vue';
 import excelUpdata from '../views/excelUpdata.vue';
 import excelView from '../views/excelView.vue';
 import ListTry50 from '../views/ListTry50.vue';
-import ClimateChangeAndItsImpactView from '../views/ClimateChangeAndItsImpact.vue';
+import ClimateChangeAndItsImpact from '../views/ClimateChangeAndItsImpact.vue';
+import PollutionInModernCities from '../views/PollutionInModernCities.vue';
 
 
 const routes = [
@@ -14,7 +15,8 @@ const routes = [
   { path: '/excelUpdata', name: 'ExcelUpdata', component: excelUpdata },
   { path: '/excelView', name: 'ExcelView', component: excelView },
   { path: '/ListTry50', name: '50list', component: ListTry50 },
-  { path: '/ClimateChangeAndItsImpact', name: 'ClimateChangeAndItsImpact', component: ClimateChangeAndItsImpactView },
+  { path: '/ClimateChangeAndItsImpact', name: 'ClimateChangeAndItsImpact', component: ClimateChangeAndItsImpact },
+  { path: '/PollutionInModernCities', name: 'PollutionInModernCities', component: PollutionInModernCities },
 ];
 
 const router = createRouter({

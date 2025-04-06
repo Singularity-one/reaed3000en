@@ -17,20 +17,6 @@
                 loading="lazy"
               />
             </div>
-            <!-- <h6 class="box-project-title">
-              <ClimateChangeAndItsImpact v-if="showClimateChangeInfo" />
-              <router-link to="/single-course">Climate change and its impact</router-link>
-            </h6>
-            <div class="box-project-meta">
-              <div class="box-project-meta-item">
-                <span class="box-project-meta-icon linearicons-clock3"></span>
-                <span class="box-project-meta-text">18 hours</span>
-              </div>
-              <div class="box-project-meta-item">
-                <span class="box-project-meta-icon linearicons-credit-card"></span>
-                <span class="box-project-meta-text">$120</span>
-              </div>
-            </div> -->
             <RouterLink to="/ClimateChangeAndItsImpact" @click="transPage('/ClimateChangeAndItsImpact')">Climate change and its impact</RouterLink>&nbsp;
           </div>
         </div>
@@ -47,20 +33,7 @@
                 loading="lazy"
               />
             </div>
-            <div class="box-project-subtitle small">Programming</div>
-            <h6 class="box-project-title">
-              <router-link to="/single-course">Data structures and algorithms</router-link>
-            </h6>
-            <div class="box-project-meta">
-              <div class="box-project-meta-item">
-                <span class="box-project-meta-icon linearicons-clock3"></span>
-                <span class="box-project-meta-text">18 hours</span>
-              </div>
-              <div class="box-project-meta-item">
-                <span class="box-project-meta-icon linearicons-credit-card"></span>
-                <span class="box-project-meta-text">$120</span>
-              </div>
-            </div>
+            <RouterLink to="/PollutionInModernCities" @click="transPage('/PollutionInModernCities')">Climate change and its impact</RouterLink>&nbsp;
           </div>
         </div>
 
