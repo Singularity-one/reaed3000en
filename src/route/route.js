@@ -6,6 +6,10 @@ import excelView from '../views/excelView.vue';
 import ListTry50 from '../views/ListTry50.vue';
 import ClimateChangeAndItsImpact from '../views/ClimateChangeAndItsImpact.vue';
 import PollutionInModernCities from '../views/PollutionInModernCities.vue';
+import RenewableEnergyVsFossilFuels from '../views/RenewableEnergyVsFossilFuels.vue';
+import TheImportanceOfForests from '../views/TheImportanceOfForests.vue';
+import WaterConservation from '../views/WaterConservation.vue';
+
 
 
 const routes = [
@@ -17,6 +21,10 @@ const routes = [
   { path: '/ListTry50', name: '50list', component: ListTry50 },
   { path: '/ClimateChangeAndItsImpact', name: 'ClimateChangeAndItsImpact', component: ClimateChangeAndItsImpact },
   { path: '/PollutionInModernCities', name: 'PollutionInModernCities', component: PollutionInModernCities },
+  { path: '/RenewableEnergyVsFossilFuels', name: 'RenewableEnergyVsFossilFuels', component: RenewableEnergyVsFossilFuels },
+  { path: '/TheImportanceOfForests', name: 'TheImportanceOfForests', component: TheImportanceOfForests },
+  { path: '/WaterConservation', name: 'WaterConservation', component: WaterConservation },
+
 ];
 
 const router = createRouter({
