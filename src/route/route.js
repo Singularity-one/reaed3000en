@@ -9,6 +9,7 @@ import PollutionInModernCities from '../views/PollutionInModernCities.vue';
 import RenewableEnergyVsFossilFuels from '../views/RenewableEnergyVsFossilFuels.vue';
 import TheImportanceOfForests from '../views/TheImportanceOfForests.vue';
 import WaterConservation from '../views/WaterConservation.vue';
+import BenefitsOfExercise from '../views/BenefitsOfExercise.vue';
 
 
 
@@ -24,6 +25,7 @@ const routes = [
   { path: '/RenewableEnergyVsFossilFuels', name: 'RenewableEnergyVsFossilFuels', component: RenewableEnergyVsFossilFuels },
   { path: '/TheImportanceOfForests', name: 'TheImportanceOfForests', component: TheImportanceOfForests },
   { path: '/WaterConservation', name: 'WaterConservation', component: WaterConservation },
+  { path: '/BenefitsOfExercise', name: 'BenefitsOfExercise', component: BenefitsOfExercise },
 
 ];
 

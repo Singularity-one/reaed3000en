@@ -39,7 +39,7 @@
       data() {
         return {
           audioSource: require('../mp3/5.Water conservation.mp3'), // 替換為你的 MP3 檔案路徑
-          dataText: 'Water is one of the most valuable resources on Earth, but many people waste it. In some places, clean water is limited, and droughts make the problem worse. Saving water is important for the environment and future generations. People can help by turning off taps, fixing leaks, and using less water for daily tasks. Governments should also improve water systems and promote recycling. Farmers can use better methods to reduce waste in agriculture. If everyone makes small changes, water shortages can be reduced. What are the best ways to encourage people to use water wisely?',
+          dataText: 'Water is one of the most valuable resources on Earth, but many people waste it. In some places, clean water is limited, and droughts make the problem worse. Saving water is important for the environment and future generations . People can help by turning off taps, fixing leaks, and using less water for daily tasks. Governments should also improve water systems and promote recycling. Farmers can use better methods to reduce waste in agriculture. If everyone makes small changes, water shortages can be reduced. What are the best ways to encourage people to use water wisely?',
           wordExplanations: {
       water: 'a colorless, transparent, odorless liquid that forms the seas, lakes, rivers, and rain and is the basis of the fluids of living organisms.',
       valuable: 'worth a great deal; expensive.',

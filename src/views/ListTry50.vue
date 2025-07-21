@@ -100,7 +100,7 @@
                 loading="lazy"
               />
             </div>
-            <RouterLink to="/ClimateChangeAndItsImpact" @click="transPage('/ClimateChangeAndItsImpact')">Climate change and its impact</RouterLink>&nbsp;
+            <RouterLink to="/BenefitsOfExercise" @click="transPage('/BenefitsOfExercise')">Benefits of exercise</RouterLink>&nbsp;
           </div>
         </div>
 
