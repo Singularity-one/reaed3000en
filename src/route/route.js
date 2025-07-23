@@ -10,8 +10,10 @@ import RenewableEnergyVsFossilFuels from '../views/RenewableEnergyVsFossilFuels.
 import TheImportanceOfForests from '../views/TheImportanceOfForests.vue';
 import WaterConservation from '../views/WaterConservation.vue';
 import BenefitsOfExercise from '../views/BenefitsOfExercise.vue';
-
-
+import TheRoleOfDoctorsInSociety from '../views/TheRoleOfDoctorsInSociety.vue';
+import HealthyeatingHabits from '../views/HealthyeatingHabits.vue';
+import MentalHealthAwareness from '../views/MentalHealthAwareness.vue';
+import TheImpactOfModernMedicine from '../views/TheImpactOfModernMedicine.vue';
 
 const routes = [
   { path: '/DayEn15', name: 'DayEn15', component: DayEn15 },
@@ -26,6 +28,10 @@ const routes = [
   { path: '/TheImportanceOfForests', name: 'TheImportanceOfForests', component: TheImportanceOfForests },
   { path: '/WaterConservation', name: 'WaterConservation', component: WaterConservation },
   { path: '/BenefitsOfExercise', name: 'BenefitsOfExercise', component: BenefitsOfExercise },
+  { path: '/TheRoleOfDoctorsInSociety', name: 'TheRoleOfDoctorsInSociety', component: TheRoleOfDoctorsInSociety },
+  { path: '/HealthyeatingHabits', name: 'HealthyeatingHabits', component: HealthyeatingHabits },
+  { path: '/MentalHealthAwareness', name: 'MentalHealthAwareness', component: MentalHealthAwareness },
+  { path: '/TheImpactOfModernMedicine', name: 'TheImpactOfModernMedicine', component: TheImpactOfModernMedicine },
 
 ];
 

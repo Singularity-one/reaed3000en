@@ -116,7 +116,7 @@
                 loading="lazy"
               />
             </div>
-            <RouterLink to="/PollutionInModernCities" @click="transPage('/PollutionInModernCities')">Pollution in modern cities</RouterLink>&nbsp;
+            <RouterLink to="/TheRoleOfDoctorsInSociety" @click="transPage('/TheRoleOfDoctorsInSociety')">The role of doctors in society</RouterLink>&nbsp;
           </div>
         </div>
 
@@ -132,7 +132,7 @@
                 loading="lazy" 
               />
             </div>
-            <RouterLink to="/RenewableEnergyVsFossilFuels" @click="transPage('/RenewableEnergyVsFossilFuels')">Renewable energy vs fossil fuels</RouterLink>&nbsp;
+            <RouterLink to="/HealthyeatingHabits" @click="transPage('/HealthyeatingHabits')">Healthy eating habits</RouterLink>&nbsp;
           </div>
         </div>
 
@@ -148,7 +148,7 @@
                 loading="lazy" 
               />
             </div>
-            <RouterLink to="/TheImportanceOfForests" @click="transPage('/TheImportanceOfForests')">The importance of forests</RouterLink>&nbsp;
+            <RouterLink to="/MentalHealthAwareness" @click="transPage('/MentalHealthAwareness')">Mental health awareness</RouterLink>&nbsp;
           </div>
         </div>
 
@@ -164,7 +164,91 @@
                 loading="lazy" 
               />
             </div>
-            <RouterLink to="/WaterConservation" @click="transPage('/WaterConservation')">Water conservation</RouterLink>&nbsp;
+            <RouterLink to="/TheImpactOfModernMedicine" @click="transPage('/TheImpactOfModernMedicine')">The impact of modern medicine</RouterLink>&nbsp;
+          </div>
+        </div>
+    </div>
+
+   <div class="row row-40 row-lg-50">
+      <div class="box-project-subtitle small">Technology & Science</div>
+
+      <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/BenefitsOfExercise" @click="transPage('/BenefitsOfExercise')">Benefits of exercise</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/TheRoleOfDoctorsInSociety" @click="transPage('/TheRoleOfDoctorsInSociety')">The role of doctors in society</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".3s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/HealthyeatingHabits" @click="transPage('/HealthyeatingHabits')">Healthy eating habits</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/MentalHealthAwareness" @click="transPage('/MentalHealthAwareness')">Mental health awareness</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/TheImpactOfModernMedicine" @click="transPage('/TheImpactOfModernMedicine')">The impact of modern medicine</RouterLink>&nbsp;
           </div>
         </div>
     </div>
