@@ -216,7 +216,7 @@
                 loading="lazy" 
               />
             </div>
-            <RouterLink to="/HealthyeatingHabits" @click="transPage('/HealthyeatingHabits')">Healthy eating habits</RouterLink>&nbsp;
+            <RouterLink to="/SpaceExplorationIsItWorthIt" @click="transPage('/SpaceExplorationIsItWorthIt')">Space exploration: is it worth it</RouterLink>&nbsp;
           </div>
         </div>
 
@@ -232,7 +232,7 @@
                 loading="lazy" 
               />
             </div>
-            <RouterLink to="/MentalHealthAwareness" @click="transPage('/MentalHealthAwareness')">Mental health awareness</RouterLink>&nbsp;
+            <RouterLink to="/TheDangersOfSocialMedia" @click="transPage('/TheDangersOfSocialMedia')">The dangers of social media</RouterLink>&nbsp;
           </div>
         </div>
 
@@ -248,7 +248,91 @@
                 loading="lazy" 
               />
             </div>
-            <RouterLink to="/TheImpactOfModernMedicine" @click="transPage('/TheImpactOfModernMedicine')">The impact of modern medicine</RouterLink>&nbsp;
+            <RouterLink to="/TheFutureOfTransportation" @click="transPage('/TheFutureOfTransportation')">The future of transportation</RouterLink>&nbsp;
+          </div>
+        </div>
+    </div>
+
+    <div class="row row-40 row-lg-50">
+      <div class="box-project-subtitle small">Education & Learning</div>
+
+      <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/TheValueOfUniversityEducation" @click="transPage('/TheValueOfUniversityEducation')">The value of university education</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/OnlineLearningVsTraditionalSchools" @click="transPage('/OnlineLearningVsTraditionalSchools')">Online learning vs traditional schools</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".3s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/TheImportanceOfLearningForeignLanguages" @click="transPage('/TheImportanceOfLearningForeignLanguages')">The importance of learning foreign languages</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/ShouldStudentsWearUniforms" @click="transPage('/ShouldStudentsWearUniforms')">Should students wear uniforms</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/HowExamsHelpStudents" @click="transPage('/HowExamsHelpStudents')">How exams help students</RouterLink>&nbsp;
           </div>
         </div>
     </div>

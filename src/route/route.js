@@ -16,6 +16,14 @@ import MentalHealthAwareness from '../views/MentalHealthAwareness.vue';
 import TheImpactOfModernMedicine from '../views/TheImpactOfModernMedicine.vue';
 import ArtificialIntelligenceInDailyLife from '../views/ArtificialIntelligenceInDailyLife.vue';   
 import TheRoleOfTheInternetInEducation from '../views/TheRoleOfTheInternetInEducation.vue';   
+import SpaceExplorationIsItWorthIt from '../views/SpaceExplorationIsItWorthIt.vue';   
+import TheDangersOfSocialMedia from '../views/TheDangersOfSocialMedia.vue';  
+import TheFutureOfTransportation from '../views/TheFutureOfTransportation.vue';  
+import TheValueOfUniversityEducation from '../views/TheValueOfUniversityEducation.vue'; 
+import OnlineLearningVsTraditionalSchools from '../views/OnlineLearningVsTraditionalSchools.vue'; 
+import TheImportanceOfLearningForeignLanguages from '../views/TheImportanceOfLearningForeignLanguages.vue'; 
+import ShouldStudentsWearUniforms from '../views/ShouldStudentsWearUniforms.vue'; 
+import HowExamsHelpStudents from '../views/HowExamsHelpStudents.vue'; 
 
 const routes = [
   { path: '/DayEn15', name: 'DayEn15', component: DayEn15 },
@@ -36,6 +44,14 @@ const routes = [
   { path: '/TheImpactOfModernMedicine', name: 'TheImpactOfModernMedicine', component: TheImpactOfModernMedicine },
   { path: '/ArtificialIntelligenceInDailyLife', name: 'ArtificialIntelligenceInDailyLife', component: ArtificialIntelligenceInDailyLife },
   { path: '/TheRoleOfTheInternetInEducation', name: 'TheRoleOfTheInternetInEducation', component: TheRoleOfTheInternetInEducation },
+  { path: '/SpaceExplorationIsItWorthIt', name: 'SpaceExplorationIsItWorthIt', component: SpaceExplorationIsItWorthIt },
+  { path: '/TheDangersOfSocialMedia', name: 'TheDangersOfSocialMedia', component: TheDangersOfSocialMedia },
+  { path: '/TheFutureOfTransportation', name: 'TheFutureOfTransportation', component: TheFutureOfTransportation },
+  { path: '/TheValueOfUniversityEducation', name: 'TheValueOfUniversityEducation', component: TheValueOfUniversityEducation },
+  { path: '/OnlineLearningVsTraditionalSchools', name: 'OnlineLearningVsTraditionalSchools', component: OnlineLearningVsTraditionalSchools },
+  { path: '/TheImportanceOfLearningForeignLanguages', name: 'TheImportanceOfLearningForeignLanguages', component: TheImportanceOfLearningForeignLanguages },
+  { path: '/ShouldStudentsWearUniforms', name: 'ShouldStudentsWearUniforms', component: ShouldStudentsWearUniforms },
+  { path: '/HowExamsHelpStudents', name: 'HowExamsHelpStudents', component: HowExamsHelpStudents },
 
 ];
 
