@@ -151,11 +151,14 @@
       },
       computed: {
         words() {
-          return this.dataText.split(/(\s+)/).map(word => ({
-            text: word,
-            explanation: this.wordExplanations[word.toLowerCase()],
-            translation: this.wordTranslations[word.toLowerCase()],
-          }));
+          return this.dataText.split(/(\s+)/).map(word => {
+            const cleanedWord = word.replace(/[.,!?();:"“”]/g, '').toLowerCase();
+            return {
+                text: word,
+                explanation: this.wordExplanations[cleanedWord],
+                translation: this.wordTranslations[cleanedWord],
+            };
+        });
         },
         currentExplanation() {
           if (this.showTranslation && this.wordTranslations[this.selectedWord.toLowerCase()]) {

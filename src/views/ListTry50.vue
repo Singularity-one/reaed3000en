@@ -184,7 +184,7 @@
                 loading="lazy"
               />
             </div>
-            <RouterLink to="/BenefitsOfExercise" @click="transPage('/BenefitsOfExercise')">Benefits of exercise</RouterLink>&nbsp;
+            <RouterLink to="/ArtificialIntelligenceInDailyLife" @click="transPage('/ArtificialIntelligenceInDailyLife')">Artificial intelligence in daily life</RouterLink>&nbsp;
           </div>
         </div>
 
@@ -200,7 +200,7 @@
                 loading="lazy"
               />
             </div>
-            <RouterLink to="/TheRoleOfDoctorsInSociety" @click="transPage('/TheRoleOfDoctorsInSociety')">The role of doctors in society</RouterLink>&nbsp;
+            <RouterLink to="/TheRoleOfTheInternetInEducation" @click="transPage('/TheRoleOfTheInternetInEducation')">The role of the internet in education</RouterLink>&nbsp;
           </div>
         </div>
 

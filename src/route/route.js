@@ -14,6 +14,8 @@ import TheRoleOfDoctorsInSociety from '../views/TheRoleOfDoctorsInSociety.vue';
 import HealthyeatingHabits from '../views/HealthyeatingHabits.vue';
 import MentalHealthAwareness from '../views/MentalHealthAwareness.vue';
 import TheImpactOfModernMedicine from '../views/TheImpactOfModernMedicine.vue';
+import ArtificialIntelligenceInDailyLife from '../views/ArtificialIntelligenceInDailyLife.vue';   
+import TheRoleOfTheInternetInEducation from '../views/TheRoleOfTheInternetInEducation.vue';   
 
 const routes = [
   { path: '/DayEn15', name: 'DayEn15', component: DayEn15 },
@@ -32,6 +34,8 @@ const routes = [
   { path: '/HealthyeatingHabits', name: 'HealthyeatingHabits', component: HealthyeatingHabits },
   { path: '/MentalHealthAwareness', name: 'MentalHealthAwareness', component: MentalHealthAwareness },
   { path: '/TheImpactOfModernMedicine', name: 'TheImpactOfModernMedicine', component: TheImpactOfModernMedicine },
+  { path: '/ArtificialIntelligenceInDailyLife', name: 'ArtificialIntelligenceInDailyLife', component: ArtificialIntelligenceInDailyLife },
+  { path: '/TheRoleOfTheInternetInEducation', name: 'TheRoleOfTheInternetInEducation', component: TheRoleOfTheInternetInEducation },
 
 ];
 
