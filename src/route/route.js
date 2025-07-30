@@ -24,6 +24,17 @@ import OnlineLearningVsTraditionalSchools from '../views/OnlineLearningVsTraditi
 import TheImportanceOfLearningForeignLanguages from '../views/TheImportanceOfLearningForeignLanguages.vue'; 
 import ShouldStudentsWearUniforms from '../views/ShouldStudentsWearUniforms.vue'; 
 import HowExamsHelpStudents from '../views/HowExamsHelpStudents.vue'; 
+import TheBenefitsOfRemoteWork from '../views/TheBenefitsOfRemoteWork.vue'; 
+import StartingABusinessVsHavingAJob from '../views/StartingABusinessVsHavingAJob.vue';
+import TheImportanceOfTeamwork from '../views/TheImportanceOfTeamwork.vue';
+import TheContemporaryWorkLandscapeIsUndergoingASeismicShift from '../views/TheContemporaryWorkLandscapeIsUndergoingASeismicShift.vue';
+import HowTechnologyIsChangingJobs from '../views/HowTechnologyIsChangingJobs.vue';
+import TheImpactOfTourismOnLocalCulture from '../views/TheImpactOfTourismOnLocalCulture.vue';
+import TheImportanceOfFamilyValues from '../views/TheImportanceOfFamilyValues.vue';
+import WhyReadingBooksIsImportant from '../views/WhyReadingBooksIsImportant.vue';
+import TheRoleOfMusicInHumanLife from '../views/TheRoleOfMusicInHumanLife.vue';
+import WhyPeopleShouldVolunteer from '../views/WhyPeopleShouldVolunteer.vue';
+
 
 const routes = [
   { path: '/DayEn15', name: 'DayEn15', component: DayEn15 },
@@ -52,7 +63,17 @@ const routes = [
   { path: '/TheImportanceOfLearningForeignLanguages', name: 'TheImportanceOfLearningForeignLanguages', component: TheImportanceOfLearningForeignLanguages },
   { path: '/ShouldStudentsWearUniforms', name: 'ShouldStudentsWearUniforms', component: ShouldStudentsWearUniforms },
   { path: '/HowExamsHelpStudents', name: 'HowExamsHelpStudents', component: HowExamsHelpStudents },
-
+  { path: '/TheBenefitsOfRemoteWork', name: 'TheBenefitsOfRemoteWork', component: TheBenefitsOfRemoteWork },
+  { path: '/TheBenefitsOfRemoteWork', name: 'TheBenefitsOfRemoteWork', component: TheBenefitsOfRemoteWork },
+  { path: '/StartingABusinessVsHavingAJob', name: 'StartingABusinessVsHavingAJob', component: StartingABusinessVsHavingAJob },
+  { path: '/TheImportanceOfTeamwork', name: 'TheImportanceOfTeamwork', component: TheImportanceOfTeamwork },
+  { path: '/TheContemporaryWorkLandscapeIsUndergoingASeismicShift', name: 'TheContemporaryWorkLandscapeIsUndergoingASeismicShift', component: TheContemporaryWorkLandscapeIsUndergoingASeismicShift },
+  { path: '/HowTechnologyIsChangingJobs', name: 'HowTechnologyIsChangingJobs', component: HowTechnologyIsChangingJobs },
+  { path: '/TheImpactOfTourismOnLocalCulture', name: 'TheImpactOfTourismOnLocalCulture', component: TheImpactOfTourismOnLocalCulture },
+  { path: '/TheImportanceOfFamilyValues', name: 'TheImportanceOfFamilyValues', component: TheImportanceOfFamilyValues },
+  { path: '/WhyReadingBooksIsImportant', name: 'WhyReadingBooksIsImportant', component: WhyReadingBooksIsImportant },
+  { path: '/TheRoleOfMusicInHumanLife', name: 'TheRoleOfMusicInHumanLife', component: TheRoleOfMusicInHumanLife },
+  { path: '/WhyPeopleShouldVolunteer', name: 'WhyPeopleShouldVolunteer', component: WhyPeopleShouldVolunteer },
 ];
 
 const router = createRouter({

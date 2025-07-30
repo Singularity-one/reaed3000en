@@ -337,6 +337,174 @@
         </div>
     </div>
 
+    <div class="row row-40 row-lg-50">
+      <div class="box-project-subtitle small">Work & Business</div>
+
+      <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/TheBenefitsOfRemoteWork" @click="transPage('/TheBenefitsOfRemoteWork')">The benefits of remote work</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/StartingABusinessVsHavingAJob" @click="transPage('/StartingABusinessVsHavingAJob')">Starting a business vs having a job</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".3s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/TheImportanceOfTeamwork" @click="transPage('/TheImportanceOfTeamwork')">The importance of teamwork</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/TheContemporaryWorkLandscapeIsUndergoingASeismicShift" @click="transPage('/TheContemporaryWorkLandscapeIsUndergoingASeismicShift')">The contemporary work landscape is undergoing a seismic shift.</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/HowTechnologyIsChangingJobs" @click="transPage('/HowTechnologyIsChangingJobs')">How technology is changing jobs</RouterLink>&nbsp;
+          </div>
+        </div>
+    </div>
+
+    <div class="row row-40 row-lg-50">
+      <div class="box-project-subtitle small">Society & Culture</div>
+
+      <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/TheImpactOfTourismOnLocalCulture" @click="transPage('/TheImpactOfTourismOnLocalCulture')">The impact of tourism on local culture</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/TheImportanceOfFamilyValues" @click="transPage('/TheImportanceOfFamilyValues')">The importance of family values</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".3s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/WhyReadingBooksIsImportant" @click="transPage('/WhyReadingBooksIsImportant')">Why reading books is important</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/TheRoleOfMusicInHumanLife" @click="transPage('/TheRoleOfMusicInHumanLife')">The role of music in human life</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/WhyPeopleShouldVolunteer" @click="transPage('/WhyPeopleShouldVolunteer')">Why people should volunteer</RouterLink>&nbsp;
+          </div>
+        </div>
+    </div>
+
   </div> 
   </section>
 
