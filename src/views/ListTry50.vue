@@ -673,6 +673,212 @@
         </div>
     </div>
 
+    <div class="row row-40 row-lg-50">
+      <div class="box-project-subtitle small">Science & Innovation</div>
+
+      <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/TheFutureOfRenewableEnergy" @click="transPage('/TheFutureOfRenewableEnergy')">The future of renewable energy</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/HowRobotsAreChangingIndustries" @click="transPage('/HowRobotsAreChangingIndustries')">How robots are changing industries</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".3s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/MedicalResearchAndNewDiseases" @click="transPage('/MedicalResearchAndNewDiseases')">Medical research and new diseases</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/TheBenefitsOfSpaceTechnology" @click="transPage('/TheBenefitsOfSpaceTechnology?')">The benefits of space technology</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/WillHumansLiveOnMars" @click="transPage('/WillHumansLiveOnMars')">Will humans live on Mars?</RouterLink>&nbsp;
+          </div>
+        </div>
+    </div>
+
+    <div class="row row-40 row-lg-50">
+      <div class="box-project-subtitle small">Personal Development</div>
+
+      <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/TheImportanceOfSelfDiscipline" @click="transPage('/TheImportanceOfSelfDiscipline')">The importance of self-discipline</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/HowHobbiesImproveMentalHealth" @click="transPage('/HowHobbiesImproveMentalHealth')">How hobbies improve mental health</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".3s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/WhySettingGoalsIsImportant" @click="transPage('/WhySettingGoalsIsImportant')">Why setting goals is important</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/TheImpactOfPositiveThinking" @click="transPage('/TheImpactOfPositiveThinking')">The impact of positive thinking</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/TimeManagementAndSuccess" @click="transPage('/TimeManagementAndSuccess')">Time management and success</RouterLink>&nbsp;
+          </div>
+        </div>
+    </div>
+
+    <div class="row row-40 row-lg-50">
+      <div class="box-project-subtitle small">Other</div>
+
+      <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/LifeInAVillage" @click="transPage('/LifeInAVillage')">Life in a Village</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/ThePowerOfObservation" @click="transPage('/ThePowerOfObservation')">The Power of Observation</RouterLink>&nbsp;
+          </div>
+        </div>
+
+    </div>
+
+
   </div> 
   </section>
 
@@ -699,6 +905,8 @@
 /*
   Keep your existing CSS styles for the header here.
   The 'scoped' attribute ensures these styles only apply to this component.
+
+  https://www.rotobaisa.com/linear-icons.html
 */
 .section.page-header {
   /* Example styles - adapt to your needs */

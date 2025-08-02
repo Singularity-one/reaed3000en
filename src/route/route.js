@@ -44,6 +44,19 @@ import TheImportanceOfStrictTrafficLaws from '../views/TheImportanceOfStrictTraf
 import HowtToReduceCrimeInCities from '../views/HowtToReduceCrimeInCities.vue';
 import CybercrimeAndOnlineSafety from '../views/CybercrimeAndOnlineSafety.vue';
 import WhyHonestyIsImportantInSociety from '../views/WhyHonestyIsImportantInSociety.vue';
+import TheFutureOfRenewableEnergy from '../views/TheFutureOfRenewableEnergy.vue';
+import HowRobotsAreChangingIndustries from '../views/HowRobotsAreChangingIndustries.vue';
+import MedicalResearchAndNewDiseases from '../views/MedicalResearchAndNewDiseases.vue';
+import TheBenefitsOfSpaceTechnology from '../views/TheBenefitsOfSpaceTechnology.vue';
+import WillHumansLiveOnMars from '../views/WillHumansLiveOnMars.vue';
+import TheImportanceOfSelfDiscipline from '../views/TheImportanceOfSelfDiscipline.vue';
+import HowHobbiesImproveMentalHealth from '../views/HowHobbiesImproveMentalHealth.vue';
+import WhySettingGoalsIsImportant from '../views/WhySettingGoalsIsImportant.vue';
+import TheImpactOfPositiveThinking from '../views/TheImpactOfPositiveThinking.vue';
+import TimeManagementAndSuccess from '../views/TimeManagementAndSuccess.vue';
+import ThePowerOfObservation from '../views/ThePowerOfObservation.vue';
+import LifeInAVillage from '../views/LifeInAVillage.vue';
+
 
 const routes = [
   { path: '/DayEn15', name: 'DayEn15', component: DayEn15 },
@@ -93,9 +106,18 @@ const routes = [
   { path: '/HowtToReduceCrimeInCities', name: 'HowtToReduceCrimeInCities', component: HowtToReduceCrimeInCities },
   { path: '/CybercrimeAndOnlineSafety', name: 'CybercrimeAndOnlineSafety', component: CybercrimeAndOnlineSafety },
   { path: '/WhyHonestyIsImportantInSociety', name: 'WhyHonestyIsImportantInSociety', component: WhyHonestyIsImportantInSociety },
-
-
-  
+  { path: '/TheFutureOfRenewableEnergy', name: 'TheFutureOfRenewableEnergy', component: TheFutureOfRenewableEnergy },
+  { path: '/HowRobotsAreChangingIndustries', name: 'HowRobotsAreChangingIndustries', component: HowRobotsAreChangingIndustries },
+  { path: '/MedicalResearchAndNewDiseases', name: 'MedicalResearchAndNewDiseases', component: MedicalResearchAndNewDiseases },
+  { path: '/TheBenefitsOfSpaceTechnology', name: 'TheBenefitsOfSpaceTechnology', component: TheBenefitsOfSpaceTechnology },
+  { path: '/WillHumansLiveOnMars', name: 'WillHumansLiveOnMars', component: WillHumansLiveOnMars },
+  { path: '/TheImportanceOfSelfDiscipline', name: 'TheImportanceOfSelfDiscipline', component: TheImportanceOfSelfDiscipline },
+  { path: '/HowHobbiesImproveMentalHealth', name: 'HowHobbiesImproveMentalHealth', component: HowHobbiesImproveMentalHealth },
+  { path: '/WhySettingGoalsIsImportant', name: 'WhySettingGoalsIsImportant', component: WhySettingGoalsIsImportant },
+  { path: '/TheImpactOfPositiveThinking', name: 'TheImpactOfPositiveThinking', component: TheImpactOfPositiveThinking },
+  { path: '/TimeManagementAndSuccess', name: 'TimeManagementAndSuccess', component: TimeManagementAndSuccess },
+  { path: '/ThePowerOfObservation', name: 'ThePowerOfObservation', component: ThePowerOfObservation },
+  { path: '/LifeInAVillage', name: 'LifeInAVillage', component: LifeInAVillage },
 
 ];
 
