@@ -11,14 +11,6 @@
       :data-word="word.text"
       >{{ word.text }} </span>
     </p>
-    <div v-if="showExplanation" class="explanation-popup" :style="{ left: popupX + 'px', top: popupY + 'px' }">
-      <p><strong>{{ selectedWord }}</strong>: {{ currentExplanation }}</p>
-      <button class="button button-primary button-nina" @click="speakWord">發音</button>
-      <br>
-      <button class="button button-primary button-nina" @click="toggleTranslation">{{ showTranslation ? '顯示英文' : '顯示中文' }}</button>
-      <br>
-      <button class="button button-primary button-nina" @click="closeExplanation">關閉</button>
-    </div>
 
     <div class="box-range-content" style="display: flex; gap: 10px; align-items: center;">
       <button @click="playAudio">
@@ -26,7 +18,7 @@
       </button>
 
       <button @click="toggleLoop">
-        <i :class="['box-project-meta-icon', 'linearicons-sync2', { 'active': isLoop }]"></i>
+        <i :class="['box-project-meta-icon', 'linearicons-repeat', { 'active': isLoop }]"></i>
       </button>
 
       <button @click="stopAudio">
@@ -35,6 +27,26 @@
 
       <audio ref="audioPlayer" :src="audioSource"></audio>
     </div>
+
+    <div v-if="showExplanation" class="row row-40 row-lg-50 explanation-text">
+        <div style="display: flex; gap: 5px; align-items: center;">
+          <p><strong>{{ selectedWord }}</strong> <em>({{ wordPartsOfSpeech[selectedWord] }})</em></p>
+          <button @click="speakWord" style="padding: 5px;">
+            <i class="box-project-meta-icon linearicons-volume-medium"></i>
+          </button>
+          <button @click="toggleTranslation" style="padding: 5px;">
+            <i class="box-project-meta-icon linearicons-eye"></i>
+          </button>
+          <button @click="closeExplanation" style="padding: 5px;">
+            <i class="box-project-meta-icon linearicons-power-switch"></i>
+          </button>
+        </div>
+        <p class="small-paragraph">{{ currentExplanation }}</p>
+        <p v-if="currentExample" class="small-paragraph">
+          <strong>example：</strong>{{ currentExample }}
+        </p>
+    </div>
+
 
   </div>
 </section>
@@ -153,6 +165,111 @@
   effective: '有效的',
   fight: '對抗'
       },
+  wordExamples: {
+ climate: 'The climate in this country is hot and dry.',
+  change: 'The weather can change quickly in the mountains.',
+  serious: 'This is a serious problem for the world.',
+  problem: 'We must solve the problem together.',
+  affecting: 'The smoke is affecting the air we breathe.',
+  world: 'People around the world need to act.',
+  rising: 'The water is rising after the rain.',
+  temperatures: 'Temperatures are going up every year.',
+  cause: 'Cars cause air pollution.',
+  extreme: 'We saw extreme heat this summer.',
+  weather: 'The weather is nice today.',
+  storms: 'Big storms hit the city last night.',
+  droughts: 'Droughts make it hard to grow food.',
+  floods: 'Floods can destroy homes and roads.',
+  ice: 'The ice is melting on the lake.',
+  polar: 'Polar bears live in very cold places.',
+  regions: 'Some regions are dry, others are wet.',
+  melting: 'The snow is melting because it is warm.',
+  leading: 'The fire is leading to smoke in the city.',
+  higher: 'The sea is getting higher every year.',
+  threaten: 'Strong winds threaten the small houses.',
+  coastal: 'Many people live in coastal towns.',
+  areas: 'These areas are home to many animals.',
+  animals: 'Animals need food, water, and a home.',
+  lose: 'We may lose some animals forever.',
+  homes: 'Many people lost their homes in the flood.',
+  forests: 'Many forests are cut down every year.',
+  disappear: 'Some animals may disappear soon.',
+  people: 'People need clean water to live.',
+  face: 'We face a big problem with the weather.',
+  heat: 'The heat in summer can be too much.',
+  poor: 'The air in this city is of poor quality.',
+  reduce: 'We can reduce pollution by using less oil.',
+  countries: 'Many countries are working together.',
+  must: 'We must do something now.',
+  cut: 'We need to cut air pollution.',
+  pollution: 'Air pollution makes it hard to breathe.',
+  individuals: 'Individuals can help by saving power.',
+  help: 'Planting trees can help the planet.',
+  saving: 'Saving water is good for the Earth.',
+  electricity: 'We use electricity to light our homes.',
+  planting: 'Planting trees is good for the air.',
+  trees: 'Trees give us clean air.',
+  action: 'We need action, not just words.',
+  soon: 'We must act soon to stop the problem.',
+  future: 'We want a better future for all.',
+  generations: 'Future generations will need clean water.',
+  suffer: 'Many people suffer during a heat wave.',
+  effective: 'This is an effective way to save energy.',
+  fight: 'We must fight climate change together.'
+
+},
+wordPartsOfSpeech: {
+      climate: 'noun',
+      change: 'verb / noun',
+      serious: 'adjective',
+      problem: 'noun',
+      affecting: 'verb',
+      world: 'noun',
+      rising: 'verb / adjective',
+      temperatures: 'noun',
+      cause: 'verb / noun',
+      extreme: 'adjective',
+      weather: 'noun',
+      storms: 'noun',
+      droughts: 'noun',
+      floods: 'noun',
+      ice: 'noun',
+      polar: 'adjective',
+      regions: 'noun',
+      melting: 'verb',
+      leading: 'verb / adjective',
+      higher: 'adjective / adverb',
+      threaten: 'verb',
+      coastal: 'adjective',
+      areas: 'noun',
+      animals: 'noun',
+      lose: 'verb',
+      homes: 'noun',
+      forests: 'noun',
+      disappear: 'verb',
+      people: 'noun',
+      face: 'verb / noun',
+      heat: 'noun',
+      poor: 'adjective',
+      reduce: 'verb',
+      countries: 'noun',
+      must: 'modal verb',
+      cut: 'verb / noun',
+      pollution: 'noun',
+      individuals: 'noun',
+      help: 'verb / noun',
+      saving: 'noun / verb',
+      electricity: 'noun',
+      planting: 'noun / verb',
+      trees: 'noun',
+      action: 'noun',
+      soon: 'adverb',
+      future: 'noun / adjective',
+      generations: 'noun',
+      suffer: 'verb',
+      effective: 'adjective',
+      fight: 'verb / noun'
+    },
       showExplanation: false,
       showTranslation: false, // 新增：控制是否顯示中文翻譯
       selectedWord: '',
@@ -183,16 +300,18 @@
     handleWordClick(event) {
       const clickedWordElement = event.target;
       if (clickedWordElement.classList.contains('clickable-word')) {
-        const word = clickedWordElement.dataset.word;
-        const explanation = this.wordExplanations[word.toLowerCase()];
-        const translation = this.wordTranslations[word.toLowerCase()];
-        if (explanation || translation) {
+        const word = clickedWordElement.dataset.word.toLowerCase();
+        const explanation = this.wordExplanations[word];
+        const translation = this.wordTranslations[word];
+        const example = this.wordExamples?.[word]; // optional chaining
+
+        if (explanation || translation || example) {
           this.selectedWord = word;
           this.explanationText = explanation || '';
+          this.currentTranslation = translation || '';
+          this.currentExample = example || '';
           this.showExplanation = true;
           this.showTranslation = false;
-          this.popupX = event.clientX;
-          this.popupY = event.clientY + 20;
         }
       } else {
         this.closeExplanation();
@@ -268,19 +387,9 @@
   background-color: #f0f8ff;
 }
 
-.explanation-popup {
-  position: fixed;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-}
-
-.explanation-popup button {
-  margin-top: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
+.explanation-text p {
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .linearicons-sync2.active {
