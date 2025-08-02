@@ -34,7 +34,16 @@ import TheImportanceOfFamilyValues from '../views/TheImportanceOfFamilyValues.vu
 import WhyReadingBooksIsImportant from '../views/WhyReadingBooksIsImportant.vue';
 import TheRoleOfMusicInHumanLife from '../views/TheRoleOfMusicInHumanLife.vue';
 import WhyPeopleShouldVolunteer from '../views/WhyPeopleShouldVolunteer.vue';
-
+import TheBenefitsOfTravelingAbroad from '../views/TheBenefitsOfTravelingAbroad.vue';
+import ShouldPublicTransportBeFree from '../views/ShouldPublicTransportBeFree.vue';
+import TheImpactOfCarsOnTheEnvironment from '../views/TheImpactOfCarsOnTheEnvironment.vue';
+import AirTravelLuxuryOrNecessity from '../views/AirTravelLuxuryOrNecessity.vue';
+import HowTrainsCanReducePollution from '../views/HowTrainsCanReducePollution.vue';
+import ShouldTheDeathPenaltyExist from '../views/ShouldTheDeathPenaltyExist.vue';
+import TheImportanceOfStrictTrafficLaws from '../views/TheImportanceOfStrictTrafficLaws.vue';
+import HowtToReduceCrimeInCities from '../views/HowtToReduceCrimeInCities.vue';
+import CybercrimeAndOnlineSafety from '../views/CybercrimeAndOnlineSafety.vue';
+import WhyHonestyIsImportantInSociety from '../views/WhyHonestyIsImportantInSociety.vue';
 
 const routes = [
   { path: '/DayEn15', name: 'DayEn15', component: DayEn15 },
@@ -74,6 +83,20 @@ const routes = [
   { path: '/WhyReadingBooksIsImportant', name: 'WhyReadingBooksIsImportant', component: WhyReadingBooksIsImportant },
   { path: '/TheRoleOfMusicInHumanLife', name: 'TheRoleOfMusicInHumanLife', component: TheRoleOfMusicInHumanLife },
   { path: '/WhyPeopleShouldVolunteer', name: 'WhyPeopleShouldVolunteer', component: WhyPeopleShouldVolunteer },
+  { path: '/TheBenefitsOfTravelingAbroad', name: 'TheBenefitsOfTravelingAbroad', component: TheBenefitsOfTravelingAbroad },
+  { path: '/ShouldPublicTransportBeFree', name: 'ShouldPublicTransportBeFree', component: ShouldPublicTransportBeFree },
+  { path: '/TheImpactOfCarsOnTheEnvironment', name: 'TheImpactOfCarsOnTheEnvironment', component: TheImpactOfCarsOnTheEnvironment },
+  { path: '/AirTravelLuxuryOrNecessity', name: 'AirTravelLuxuryOrNecessity', component: AirTravelLuxuryOrNecessity },
+  { path: '/HowTrainsCanReducePollution', name: 'HowTrainsCanReducePollution', component: HowTrainsCanReducePollution },
+  { path: '/ShouldTheDeathPenaltyExist', name: 'ShouldTheDeathPenaltyExist', component: ShouldTheDeathPenaltyExist },
+  { path: '/TheImportanceOfStrictTrafficLaws', name: 'TheImportanceOfStrictTrafficLaws', component: TheImportanceOfStrictTrafficLaws },
+  { path: '/HowtToReduceCrimeInCities', name: 'HowtToReduceCrimeInCities', component: HowtToReduceCrimeInCities },
+  { path: '/CybercrimeAndOnlineSafety', name: 'CybercrimeAndOnlineSafety', component: CybercrimeAndOnlineSafety },
+  { path: '/WhyHonestyIsImportantInSociety', name: 'WhyHonestyIsImportantInSociety', component: WhyHonestyIsImportantInSociety },
+
+
+  
+
 ];
 
 const router = createRouter({

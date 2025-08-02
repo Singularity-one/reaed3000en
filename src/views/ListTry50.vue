@@ -505,6 +505,174 @@
         </div>
     </div>
 
+    <div class="row row-40 row-lg-50">
+      <div class="box-project-subtitle small">Travel & Transport</div>
+
+      <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/TheBenefitsOfTravelingAbroad" @click="transPage('/TheBenefitsOfTravelingAbroad')">The benefits of traveling abroad</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/ShouldPublicTransportBeFree" @click="transPage('/ShouldPublicTransportBeFree?')">Should public transport be free?</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".3s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/TheImpactOfCarsOnTheEnvironment" @click="transPage('/TheImpactOfCarsOnTheEnvironment')">The impact of cars on the environment</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/AirTravelLuxuryOrNecessity" @click="transPage('/AirTravelLuxuryOrNecessity?')">Air travel: luxury or necessity?</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/HowTrainsCanReducePollution" @click="transPage('/HowTrainsCanReducePollution')">How trains can reduce pollution</RouterLink>&nbsp;
+          </div>
+        </div>
+    </div>
+
+    <div class="row row-40 row-lg-50">
+      <div class="box-project-subtitle small">Crime & Law</div>
+
+      <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/ShouldTheDeathPenaltyExist" @click="transPage('/ShouldTheDeathPenaltyExist')">Should the death penalty exist?</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy"
+              />
+            </div>
+            <RouterLink to="/TheImportanceOfStrictTrafficLaws" @click="transPage('/TheImportanceOfStrictTrafficLaws')">The importance of strict traffic laws</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".3s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/HowtToReduceCrimeInCities" @click="transPage('/HowtToReduceCrimeInCities')">How to reduce crime in cities</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".1s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/CybercrimeAndOnlineSafety" @click="transPage('/CybercrimeAndOnlineSafety?')">Cybercrime and online safety</RouterLink>&nbsp;
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 wow fadeInUp" data-wow-delay=".2s">
+          <div class="box-project box-width-3">
+            <div class="box-project-media">
+              <img
+                class="box-project-img"
+                src="../images/iceberg-6779681_1280.jpg"
+                alt=""
+                width="360"
+                height="345"
+                loading="lazy" 
+              />
+            </div>
+            <RouterLink to="/WhyHonestyIsImportantInSociety" @click="transPage('/WhyHonestyIsImportantInSociety')">Why honesty is important in society</RouterLink>&nbsp;
+          </div>
+        </div>
+    </div>
+
   </div> 
   </section>
 
