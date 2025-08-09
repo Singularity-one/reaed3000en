@@ -23,16 +23,35 @@
         <div>
           <AudioPlayer audioSource="2.Pollution in modern cities.mp3" />
         </div>
+        
+        <div class="box-range-content" style="display: flex; gap: 10px; align-items: center; margin-top: 1rem;">
+          <button @click="showCloze" style="padding: 5px;">
+            <i class="box-project-meta-icon linearicons-book"></i>
+          </button>
+          <button @click="closeCloze" style="padding: 5px;">
+            <i class="box-project-meta-icon linearicons-book2"></i>
+          </button>
+        </div> 
+        
+        <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">
+          <ClozeTest
+          :dataText="dataText"
+          :wordExplanations="wordExplanations"
+          :blanksCount="100"
+          />
+        </div>
+    
       </div>
     </section>
     </template>
     
       
       <script>
+      import ClozeTest from '@/components/ClozeTest.vue';
       import AudioPlayer from "@/components/AudioPlayer.vue";
       export default {
       name: 'PollutionInModernCities',
-      components: { AudioPlayer },
+      components: { ClozeTest,AudioPlayer },
       data() {
         return {
           dataText: 'Many cities face serious pollution problems due to traffic, industry, and waste. Smoke from cars and factories makes the air unhealthy, causing breathing issues. Rubbish in streets and rivers leads to dirty water and harms wildlife. Noise from vehicles and construction also affects people’s well-being. To improve the situation, public transport should be better, and recycling must increase. Green spaces can help clean the air and make cities more pleasant. Governments and individuals need to work together to reduce pollution. If people act now, cities will become healthier and safer for future generations. What solutions do you suggest?',
@@ -141,8 +160,7 @@
           showTranslation: false, // 新增：控制是否顯示中文翻譯
           selectedWord: '',
           explanationText: '',
-          popupX: 0,
-          popupY: 0,
+          showClozeTest: false,
         };
       },
       computed: {
@@ -227,6 +245,12 @@
         transPage(item) {
           this.$router.push(`${item}`);
         },
+        showCloze(){
+          this.showClozeTest = true;
+        },
+        closeCloze(){
+          this.showClozeTest = false;
+        },
       }
     };
       </script>
@@ -251,9 +275,10 @@
       z-index: 10;
     }
     
-    .explanation-popup button {
-      margin-top: 5px;
-      padding: 5px 10px;
-      cursor: pointer;
+    .explanation-text p {
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 1;
     }
+
       </style>
