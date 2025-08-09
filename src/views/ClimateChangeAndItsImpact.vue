@@ -12,20 +12,8 @@
       >{{ word.text }} </span>
     </p>
 
-    <div class="box-range-content" style="display: flex; gap: 10px; align-items: center;">
-      <button @click="playAudio">
-        <i class="box-project-meta-icon linearicons-play-circle"></i>
-      </button>
-
-      <button @click="toggleLoop">
-        <i :class="['box-project-meta-icon', 'linearicons-repeat', { 'active': isLoop }]"></i>
-      </button>
-
-      <button @click="stopAudio">
-        <i class="box-project-meta-icon linearicons-stop-circle"></i>
-      </button>
-
-      <audio ref="audioPlayer" :src="audioSource"></audio>
+    <div>
+      <AudioPlayer audioSource="1.Climate change and its impact.mp3" />
     </div>
 
     <div v-if="showExplanation" class="row row-40 row-lg-50 explanation-text">
@@ -47,18 +35,18 @@
         </p>
     </div>
 
-
   </div>
 </section>
 </template>
 
   
   <script>
+  import AudioPlayer from "@/components/AudioPlayer.vue";
   export default {
   name: 'ClimateChangeAndItsImpact',
+  components: { AudioPlayer },
   data() {
     return {
-      audioSource: require('../mp3/1.Climate change and its impact.mp3'), // 替換為你的 MP3 檔案路徑
       isLoop: false,
       dataText: 'Climate change is a serious problem affecting the world. Rising temperatures cause extreme weather, such as storms, droughts, and floods. Ice in the polar regions is melting, leading to higher sea levels that threaten coastal areas. Many animals lose their homes as forests disappear. People also face health risks due to heat and poor air quality. To reduce climate change, countries must cut pollution and use clean energy. Individuals can help by saving electricity and planting trees. If action is not taken soon, future generations will suffer. What do you think is the most effective way to fight climate change?',
       wordExplanations: {

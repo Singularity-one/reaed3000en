@@ -19,14 +19,9 @@
           <br>
           <button class="button button-primary button-nina" @click="closeExplanation">關閉</button>
         </div>
-    
-        <div class="box-range-content">
-          <div class="box-range-content">
-                <button @click="playAudio">
-                  <i class="box-project-meta-icon linearicons-play-circle"></i>
-                </button>
-                <audio ref="audioPlayer" :src="audioSource"></audio>
-          </div>
+        
+        <div>
+          <AudioPlayer audioSource="2.Pollution in modern cities.mp3" />
         </div>
       </div>
     </section>
@@ -34,11 +29,12 @@
     
       
       <script>
+      import AudioPlayer from "@/components/AudioPlayer.vue";
       export default {
       name: 'PollutionInModernCities',
+      components: { AudioPlayer },
       data() {
         return {
-          audioSource: require('../mp3/2.Pollution in modern cities.mp3'), // 替換為你的 MP3 檔案路徑
           dataText: 'Many cities face serious pollution problems due to traffic, industry, and waste. Smoke from cars and factories makes the air unhealthy, causing breathing issues. Rubbish in streets and rivers leads to dirty water and harms wildlife. Noise from vehicles and construction also affects people’s well-being. To improve the situation, public transport should be better, and recycling must increase. Green spaces can help clean the air and make cities more pleasant. Governments and individuals need to work together to reduce pollution. If people act now, cities will become healthier and safer for future generations. What solutions do you suggest?',
           wordExplanations: {
             Many: 'a large number of.',
