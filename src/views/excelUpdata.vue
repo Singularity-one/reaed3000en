@@ -1,7 +1,17 @@
 <template>
   <div>
-    <h2>上傳 Excel</h2>
-    <input type="file" @change="handleFileUpload" accept=".xlsx, .xls" />
+    <div>
+      <input
+      type="file"
+      ref="fileInput"
+      @change="handleFileUpload"
+      accept=".xlsx, .xls"
+      style="display: none;"
+      />
+      <button @click="triggerFileInput" style="padding: 5px;">
+        <i class="box-project-meta-icon linearicons-folder-upload"></i>
+      </button>
+    </div>
     <div v-if="headers.length">
       <h3>標題</h3>
       <ul>
@@ -41,6 +51,9 @@ export default {
     return { excelStore };
   },
   methods: {
+    triggerFileInput() {
+      this.$refs.fileInput.click();
+    },
     handleFileUpload(event) {
       const file = event.target.files[0];
       if (!file) return;
