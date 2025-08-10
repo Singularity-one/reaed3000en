@@ -76,39 +76,37 @@ export default {
       showClozeTest: false,
     };
   },
-      async created() {
-        const excelStore = useExcelStore();
+  async created() {
+    const excelStore = useExcelStore();
+    if (
+      Object.keys(excelStore.wordExplanations).length === 0 ||
+      Object.keys(excelStore.wordTranslations).length === 0
+    ) {
+      try {
+        const url = process.env.BASE_URL + 'excel/default.xlsx';
+        const response = await fetch(url);
+        const arrayBuffer = await response.arrayBuffer();
+        const data = new Uint8Array(arrayBuffer);
+        const workbook = XLSX.read(data, { type: 'array' });
         
-        if (
-          Object.keys(excelStore.wordExplanations).length === 0 ||
-          Object.keys(excelStore.wordTranslations).length === 0
-        ) {
-          try {
-            const response = await fetch('excel/default.xlsx');
-            const arrayBuffer = await response.arrayBuffer();
-            const data = new Uint8Array(arrayBuffer);
-            const workbook = XLSX.read(data, { type: 'array' });
-            
-            let allData = [];
-            workbook.SheetNames.forEach(sheetName => {
-              const worksheet = workbook.Sheets[sheetName];
-              const jsonData = XLSX.utils.sheet_to_json(worksheet);
-              allData = allData.concat(jsonData);
-            });
-            
-            if (allData.length > 0) {
-              excelStore.setExcelData(Object.keys(allData[0]), allData);
-            }
-          } catch (error) {
-            console.error('載入預設 Excel 失敗:', error);
-          }
+        let allData = [];
+        workbook.SheetNames.forEach(sheetName => {
+          const worksheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(worksheet);
+          allData = allData.concat(jsonData);
+        });
+        if (allData.length > 0) {
+          excelStore.setExcelData(Object.keys(allData[0]), allData);
         }
-        
-        this.wordExplanations = excelStore.wordExplanations;
-        this.wordTranslations = excelStore.wordTranslations;
-        this.wordExamples = excelStore.wordExamples;
-        this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
-      },
+      } catch (error) {
+        console.error('載入預設 Excel 失敗:', error);
+      }
+    }
+    
+    this.wordExplanations = excelStore.wordExplanations;
+    this.wordTranslations = excelStore.wordTranslations;
+    this.wordExamples = excelStore.wordExamples;this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
+  },
       computed: {
         words() {
       const explanations = this.wordExplanations || {};

@@ -76,15 +76,15 @@ export default {
       showClozeTest: false,
     };
   },
-    async created() {
+  async created() {
     const excelStore = useExcelStore();
-    
     if (
       Object.keys(excelStore.wordExplanations).length === 0 ||
       Object.keys(excelStore.wordTranslations).length === 0
     ) {
       try {
-        const response = await fetch('excel/default.xlsx');
+        const url = process.env.BASE_URL + 'excel/default.xlsx';
+        const response = await fetch(url);
         const arrayBuffer = await response.arrayBuffer();
         const data = new Uint8Array(arrayBuffer);
         const workbook = XLSX.read(data, { type: 'array' });
@@ -95,7 +95,6 @@ export default {
           const jsonData = XLSX.utils.sheet_to_json(worksheet);
           allData = allData.concat(jsonData);
         });
-        
         if (allData.length > 0) {
           excelStore.setExcelData(Object.keys(allData[0]), allData);
         }
@@ -106,8 +105,7 @@ export default {
     
     this.wordExplanations = excelStore.wordExplanations;
     this.wordTranslations = excelStore.wordTranslations;
-    this.wordExamples = excelStore.wordExamples;
-    this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
+    this.wordExamples = excelStore.wordExamples;this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
   },
   computed: {
     words() {
