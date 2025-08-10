@@ -16,26 +16,16 @@
         <AudioPlayer audioSource="1.Climate change and its impact" />
       </div>
 
-      <div v-if="showExplanation" class="explanation-text">
-        <div style="display: flex; gap: 5px; align-items: center;">
-          <p>
-            <strong>{{ selectedWord }}</strong>
-            <em>({{ wordPartsOfSpeech[selectedWord] }})</em>
-          </p>
-          <button @click="speakWord" style="padding: 5px;">
-            <i class="box-project-meta-icon linearicons-volume-medium"></i>
-          </button>
-          <button @click="toggleTranslation" style="padding: 5px;">
-            <i class="box-project-meta-icon linearicons-eye"></i>
-          </button>
-          <button @click="closeExplanation" style="padding: 5px;">
-            <i class="box-project-meta-icon linearicons-power-switch"></i>
-          </button>
-        </div>
-        <p class="small-paragraph">{{ currentExplanation }}</p>
-        <p v-if="currentExample" class="small-paragraph">
-          <strong>example：</strong>{{ currentExample }}
-        </p>
+      <div>
+        <WordExplanation
+        :visible="showExplanation"
+        :word="selectedWord"
+        :partOfSpeech="wordPartsOfSpeech[selectedWord]"
+        :explanation="wordExplanations[selectedWord]"
+        :translation="wordTranslations[selectedWord]"
+        :example="wordExamples[selectedWord]"
+        @close="showExplanation = false"
+        />
       </div>
       
       <div class="box-range-content" style="display: flex; gap: 10px; align-items: center; margin-top: 1rem;">
@@ -63,10 +53,11 @@ import * as XLSX from 'xlsx';
 import { useExcelStore } from '@/stores/excelStore';
 import ClozeTest from '@/components/ClozeTest.vue';
 import AudioPlayer from "@/components/AudioPlayer.vue";
+import WordExplanation from '@/components/WordExplanation.vue';
 
 export default {
   name: 'ClimateChangeAndItsImpact',
-  components: { ClozeTest,AudioPlayer },
+  components: { ClozeTest,AudioPlayer,WordExplanation },
   data() {
     return {
       dataText:
@@ -85,27 +76,32 @@ export default {
   },
   async created() {
     const excelStore = useExcelStore();
-
+    
     if (
       Object.keys(excelStore.wordExplanations).length === 0 ||
       Object.keys(excelStore.wordTranslations).length === 0
     ) {
       try {
-        const response = await fetch('/default.xlsx');
+        const response = await fetch('excel/default.xlsx');
         const arrayBuffer = await response.arrayBuffer();
         const data = new Uint8Array(arrayBuffer);
         const workbook = XLSX.read(data, { type: 'array' });
-
-        const sheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[sheetName];
-        const jsonData = XLSX.utils.sheet_to_json(worksheet);
-
-        excelStore.setExcelData(Object.keys(jsonData[0]), jsonData);
+        
+        let allData = [];
+        workbook.SheetNames.forEach(sheetName => {
+          const worksheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(worksheet);
+          allData = allData.concat(jsonData);
+        });
+        
+        if (allData.length > 0) {
+          excelStore.setExcelData(Object.keys(allData[0]), allData);
+        }
       } catch (error) {
         console.error('載入預設 Excel 失敗:', error);
       }
     }
-
+    
     this.wordExplanations = excelStore.wordExplanations;
     this.wordTranslations = excelStore.wordTranslations;
     this.wordExamples = excelStore.wordExamples;
@@ -162,18 +158,6 @@ export default {
       this.selectedWord = '';
       this.explanationText = '';
       this.currentExample = '';
-    },
-    toggleTranslation() {
-      this.showTranslation = !this.showTranslation;
-    },
-    speakWord() {
-      if ('speechSynthesis' in window) {
-        const synth = window.speechSynthesis;
-        const utterance = new SpeechSynthesisUtterance(this.selectedWord);
-        synth.speak(utterance);
-      } else {
-        alert('您的瀏覽器不支持語音合成功能。');
-      }
     },
     showCloze(){
       this.showClozeTest = true;
