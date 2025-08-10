@@ -1,6 +1,9 @@
 <template>
   <section class="section section-lg text-center text-md-start bg-default">
     <div class="container">
+      <div class="box-range-content">
+        <router-link @click="transPage('/ListTry50')" to="/about-us">back</router-link>
+      </div>
       <p class="text-spacing-sm" @click="handleWordClick">
         <span
           v-for="(word, index) in words"
@@ -14,7 +17,7 @@
 
       <div>
         <AudioPlayer audioSource="1.Climate change and its impact" />
-      </div>
+      </div>  
 
       <div>
         <WordExplanation
@@ -164,6 +167,9 @@ export default {
     },
     closeCloze(){
       this.showClozeTest = false;
+    },
+    transPage(item) {
+      this.$router.push(`${item}`);
     },
   },
 };
