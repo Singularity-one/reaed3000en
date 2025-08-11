@@ -1,9 +1,12 @@
 <template>
   <div class="cloze-test-section" style="margin-top: 2rem;">
-    <h3>Cloze Test</h3>
-
-    <div v-for="(sentence, sIndex) in sentencesTokens" :key="'sentence-' + sIndex" style="margin-bottom: 1.5rem;">
-      <p>
+    <div 
+      v-for="(sentence, sIndex) in sentencesTokens" 
+      :key="'sentence-' + sIndex"
+      style="margin-bottom: 1.5rem;"
+    >
+      <!-- 這裡用 hiddenParts 控制 -->
+      <p v-if="!hiddenParts[sIndex]">
         <span v-for="(token, tIndex) in sentence" :key="'token-' + sIndex + '-' + tIndex">
           <template v-if="token.isBlank">
             <input
@@ -30,6 +33,13 @@
       </button>
       <button @click="speakSentence(sIndex)" style="padding: 5px;">
         <i class="box-project-meta-icon linearicons-volume-medium"></i>
+      </button>
+
+      <button v-if="!hiddenParts[sIndex]" @click="hiddenParts[sIndex] = true" style="padding: 5px;">
+        <i class="box-project-meta-icon linearicons-eye-crossed"></i>
+      </button>
+      <button v-else @click="hiddenParts[sIndex] = false" style="padding: 5px;">
+        <i class="box-project-meta-icon linearicons-eye"></i>
       </button>
 
       <div v-if="showAnswers[sIndex]" style="margin-top: 1rem;">
@@ -65,7 +75,15 @@ export default {
     return {
       sentencesTokens: [],  // 二維陣列，每句話一組 tokens
       showAnswers: [],      // 每句是否顯示答案（boolean 陣列）
+      hiddenParts: [],
     };
+  },
+  computed:{
+    visibleSentences() {
+      return this.sentencesTokens
+        .map((sentence, idx) => ({ sentence, index: idx }))
+        .filter(({ index }) => !this.hiddenSentences[index]);
+    },
   },
   methods: {
     splitIntoSentences(text) {
@@ -105,6 +123,7 @@ export default {
       const sentences = this.splitIntoSentences(this.dataText);
       this.sentencesTokens = sentences.map(sentence => this.generateClozeTokensForSentence(sentence));
       this.showAnswers = sentences.map(() => false);
+      this.hiddenParts = sentences.map(() => false);
     },
     checkAnswers(sentenceIndex) {
         this.sentencesTokens[sentenceIndex].forEach(token => {
@@ -157,7 +176,10 @@ export default {
       } else {
         alert('您的瀏覽器不支持語音合成功能。');
       }
-    }
+    },
+    toggleSentence(index) {
+      this.hiddenSentences[index] = !this.hiddenSentences[index];
+    },
   },
   watch: {
     dataText: 'generateClozeTokens',
