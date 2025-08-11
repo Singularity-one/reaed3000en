@@ -73,7 +73,23 @@ export default {
       if ('speechSynthesis' in window) {
         const synth = window.speechSynthesis;
         if (synth.speaking) synth.cancel();
+        
         const utterance = new SpeechSynthesisUtterance(this.word);
+        
+        utterance.lang = 'en-US'; // 或 'en-GB'
+        utterance.rate = 0.9;     // 語速 (0.1 ~ 10)
+        utterance.pitch = 1;      // 音調 (0 ~ 2)
+        utterance.volume = 1;     // 音量 (0 ~ 1)
+        
+        let voices = synth.getVoices();
+        if (voices.length === 0) {// 如果第一次呼叫時 voices 還沒載入，等載入後再重試
+          synth.onvoiceschanged = () => this.speakWord();
+          return;
+        }
+        const enVoice = voices.find(v => v.lang === 'en-US' && v.name.includes('Google'));
+        if (enVoice) {
+          utterance.voice = enVoice;
+        }
         synth.speak(utterance);
       } else {
         alert('您的瀏覽器不支持語音合成功能。');
