@@ -40,10 +40,11 @@
           </button>
         </div> 
         
-        <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">
+        <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">\
           <ClozeTest
           :dataText="dataText"
           :wordExplanations="wordExplanations"
+          :wordCloze="wordCloze"
           :blanksCount="100"
           />
         </div>
@@ -71,6 +72,7 @@ export default {
       wordTranslations: {},
       wordExamples: {},
       wordPartsOfSpeech: {},
+      wordCloze: {},
       selectedWord: '',
       explanationText: '',
       showClozeTest: false,
@@ -105,7 +107,9 @@ export default {
     
     this.wordExplanations = excelStore.wordExplanations;
     this.wordTranslations = excelStore.wordTranslations;
-    this.wordExamples = excelStore.wordExamples;this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
+    this.wordExamples = excelStore.wordExamples;
+    this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
+    this.wordCloze = excelStore.wordCloze || {};
   },
       computed: {
         words() {

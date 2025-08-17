@@ -4,6 +4,7 @@
       <div class="box-range-content">
         <router-link @click="transPage('/ListTry50')" to="/about-us">back</router-link>
       </div>
+
       <p class="text-spacing-sm" @click="handleWordClick">
         <span
           v-for="(word, index) in words"
@@ -21,13 +22,13 @@
 
       <div>
         <WordExplanation
-        :visible="showExplanation"
-        :word="selectedWord"
-        :partOfSpeech="wordPartsOfSpeech[selectedWord]"
-        :explanation="wordExplanations[selectedWord]"
-        :translation="wordTranslations[selectedWord]"
-        :example="wordExamples[selectedWord]"
-        @close="showExplanation = false"
+          :visible="showExplanation"
+          :word="selectedWord"
+          :partOfSpeech="wordPartsOfSpeech[selectedWord]"
+          :explanation="wordExplanations[selectedWord]"
+          :translation="wordTranslations[selectedWord]"
+          :example="wordExamples[selectedWord]"
+          @close="showExplanation = false"
         />
       </div>
       
@@ -41,11 +42,12 @@
       </div> 
 
       <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">
-          <ClozeTest
+        <ClozeTest
           :dataText="dataText"
           :wordExplanations="wordExplanations"
+          :wordCloze="wordCloze"
           :blanksCount="100"
-          />
+        />
       </div>
     </div>
   </section>
@@ -60,7 +62,7 @@ import WordExplanation from '@/components/WordExplanation.vue';
 
 export default {
   name: 'ClimateChangeAndItsImpact',
-  components: { ClozeTest,AudioPlayer,WordExplanation },
+  components: { ClozeTest, AudioPlayer, WordExplanation },
   data() {
     return {
       dataText:
@@ -74,6 +76,7 @@ export default {
       wordTranslations: {},
       wordExamples: {},
       wordPartsOfSpeech: {},
+      wordCloze: {},
       showClozeTest: false,
     };
   },
@@ -104,16 +107,18 @@ export default {
       }
     }
     
+    // 將資料從 store 取出
     this.wordExplanations = excelStore.wordExplanations;
     this.wordTranslations = excelStore.wordTranslations;
-    this.wordExamples = excelStore.wordExamples;this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
+    this.wordExamples = excelStore.wordExamples;
+    this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
+    this.wordCloze = excelStore.wordCloze || {};
   },
   computed: {
     words() {
       const explanations = this.wordExplanations || {};
       const translations = this.wordTranslations || {};
-
-      return this.dataText.split(/(\s+)/).map((word) => {
+      return this.dataText.split(/(\s+)/).map(word => {
         const cleanedWord = word.replace(/[.,!?();:"“”]/g, '').toLowerCase();
         return {
           text: word,
@@ -179,11 +184,9 @@ export default {
   border-bottom: 1px dotted #007bff;
   color: #007bff;
 }
-
 .clickable-word:hover {
   background-color: #f0f8ff;
 }
-
 .explanation-text p {
   margin-bottom: 1rem;
 }

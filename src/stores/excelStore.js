@@ -8,6 +8,13 @@ export const useExcelStore = defineStore('excel', {
     wordTranslations: {},
     wordExamples: {},
     wordPartsOfSpeech: {},
+    wordOneDay: {},
+    wordTwoDay: {},
+    wordThreeDay: {},
+    wordOneWeek: {},
+    wordTwoWeek: {},
+    wordOneMoon: {},
+    wordCloze: {},
   }),
   actions: {
     setExcelData(headers, tableData) {
@@ -22,8 +29,17 @@ export const useExcelStore = defineStore('excel', {
       const examples = {};
       const partsOfSpeech = {};
 
+      const oneDays = {};
+      const twoDays = {};
+      const threeDays = {};
+      const oneWeeks = {};
+      const twoWeeks = {};
+      const oneMoons = {};
+      const clozes = {};
+
+
       tableData.forEach(row => {
-        // 為了處理大小寫不一致，先把欄位名轉小寫再找
+        // 把欄位名轉小寫，避免大小寫不一致
         const rowLower = {};
         for (const key in row) {
           if (Object.hasOwnProperty.call(row, key)) {
@@ -37,6 +53,15 @@ export const useExcelStore = defineStore('excel', {
           translations[word] = (rowLower['translation'] || '').toString().trim();
           examples[word] = (rowLower['example'] || '').toString().trim();
           partsOfSpeech[word] = (rowLower['partofspeech'] || '').toString().trim();
+
+          oneDays[word] = (rowLower['oneDay'] || '').toString().trim();
+          twoDays[word] = (rowLower['twoDay'] || '').toString().trim();
+          threeDays[word] = (rowLower['threeDay'] || '').toString().trim();
+          oneWeeks[word] = (rowLower['oneWeek'] || '').toString().trim();
+          twoWeeks[word] = (rowLower['twoWeek'] || '').toString().trim();
+          oneMoons[word] = (rowLower['oneMoon'] || '').toString().trim();
+          clozes[word] = (rowLower['cloze'] || '').toString().trim();
+
         }
       });
 
@@ -44,6 +69,15 @@ export const useExcelStore = defineStore('excel', {
       this.wordTranslations = translations;
       this.wordExamples = examples;
       this.wordPartsOfSpeech = partsOfSpeech;
+
+
+      this.wordOneDay = oneDays;
+      this.wordTwoDay = twoDays;
+      this.wordThreeDay = threeDays;
+      this.wordOneWeek = oneWeeks;
+      this.wordTwoWeek = twoWeeks;
+      this.wordOneMoon = oneMoons;
+      this.wordCloze = clozes;
     }
   }
 });

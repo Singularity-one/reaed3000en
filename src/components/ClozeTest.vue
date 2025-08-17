@@ -5,7 +5,6 @@
       :key="'sentence-' + sIndex"
       style="margin-bottom: 1.5rem;"
     >
-      <!-- 這裡用 hiddenParts 控制 -->
       <p v-if="!hiddenParts[sIndex]">
         <span v-for="(token, tIndex) in sentence" :key="'token-' + sIndex + '-' + tIndex">
           <template v-if="token.isBlank">
@@ -58,53 +57,37 @@
 export default {
   name: 'ClozeTest',
   props: {
-    dataText: {
-      type: String,
-      required: true
-    },
-    wordExplanations: {
-      type: Object,
-      required: true
-    },
-    blanksCount: {
-      type: Number,
-      default: 3  // 每句最大空格數量，自行調整
-    }
+    dataText: { type: String, required: true },
+    wordExplanations: { type: Object, required: true },
+    wordCloze: { type: Object, required: false, default: () => ({}) }, // 新增 props
+    blanksCount: { type: Number, default: 3 }
   },
   data() {
     return {
-      sentencesTokens: [],  // 二維陣列，每句話一組 tokens
-      showAnswers: [],      // 每句是否顯示答案（boolean 陣列）
+      sentencesTokens: [],
+      showAnswers: [],
       hiddenParts: [],
     };
   },
-  computed:{
-    visibleSentences() {
-      return this.sentencesTokens
-        .map((sentence, idx) => ({ sentence, index: idx }))
-        .filter(({ index }) => !this.hiddenSentences[index]);
-    },
-  },
   methods: {
     splitIntoSentences(text) {
-      // 簡單用句號/問號/驚嘆號分句（可擴充）
       return text.match(/[^.!?]+[.!?]?/g) || [];
     },
     generateClozeTokensForSentence(sentence) {
       const words = sentence.split(/(\s+)/);
-      const candidateWords = Object.keys(this.wordExplanations);
+      const candidateWords = Object.keys(this.wordExplanations || {});
       let blanksSet = new Set();
 
-      // 挑出句中可空白詞
       words.forEach(word => {
         const cleaned = word.replace(/[.,!?();:"“”]/g, '').toLowerCase();
-        if (candidateWords.includes(cleaned)) blanksSet.add(cleaned);
+        const clozeValue = this.wordCloze?.[cleaned]; // 使用 props
+        if (candidateWords.includes(cleaned) && clozeValue !== 'N') {
+          blanksSet.add(cleaned);
+        }
       });
 
-      // 限制空格數量
       const blanksArray = Array.from(blanksSet).slice(0, this.blanksCount);
 
-      // 產生 tokens
       return words.map(word => {
         const cleaned = word.replace(/[.,!?();:"“”]/g, '').toLowerCase();
         if (blanksArray.includes(cleaned)) {
@@ -126,32 +109,30 @@ export default {
       this.hiddenParts = sentences.map(() => false);
     },
     checkAnswers(sentenceIndex) {
-        this.sentencesTokens[sentenceIndex].forEach(token => {
-            if (token.isBlank) {
-                token.isCorrect = token.userAnswer.trim().toLowerCase() === token.correctAnswer;
-            }
-        });
-        this.showAnswers[sentenceIndex] = true;  // 直接賦值
+      this.sentencesTokens[sentenceIndex].forEach(token => {
+        if (token.isBlank) {
+          token.isCorrect = token.userAnswer.trim().toLowerCase() === token.correctAnswer;
+        }
+      });
+      this.showAnswers[sentenceIndex] = true;
     },
     resetCloze(sentenceIndex) {
-        this.sentencesTokens[sentenceIndex].forEach(token => {
-            if (token.isBlank) {
-                token.userAnswer = '';
-                token.isCorrect = null;
-            }
-        });
-        this.showAnswers[sentenceIndex] = false;  // 直接賦值
+      this.sentencesTokens[sentenceIndex].forEach(token => {
+        if (token.isBlank) {
+          token.userAnswer = '';
+          token.isCorrect = null;
+        }
+      });
+      this.showAnswers[sentenceIndex] = false;
     },
     speakSentence(sentenceIndex) {
       const sentenceTokens = this.sentencesTokens[sentenceIndex];
-      // 將 tokens 合併成句子（空格要加上）
       const textToSpeak = sentenceTokens.map(t => t.isBlank ? t.correctAnswer : t.text).join('');
-      
+
       if ('speechSynthesis' in window) {
         const synth = window.speechSynthesis;
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
 
-        // 嘗試用 Google 英文語音
         const setGoogleVoice = () => {
           const voices = synth.getVoices();
           const googleVoice = voices.find(voice => voice.name.includes('Google') && voice.lang.startsWith('en'));
@@ -159,9 +140,7 @@ export default {
             utterance.voice = googleVoice;
           } else {
             const defaultEnglishVoice = voices.find(voice => voice.lang.startsWith('en'));
-            if (defaultEnglishVoice) {
-              utterance.voice = defaultEnglishVoice;
-            }
+            if (defaultEnglishVoice) utterance.voice = defaultEnglishVoice;
           }
           synth.speak(utterance);
         };
@@ -177,13 +156,14 @@ export default {
         alert('您的瀏覽器不支持語音合成功能。');
       }
     },
-    toggleSentence(index) {
-      this.hiddenSentences[index] = !this.hiddenSentences[index];
-    },
   },
   watch: {
     dataText: 'generateClozeTokens',
     wordExplanations: {
+      handler: 'generateClozeTokens',
+      deep: true
+    },
+    wordCloze: {
       handler: 'generateClozeTokens',
       deep: true
     }
