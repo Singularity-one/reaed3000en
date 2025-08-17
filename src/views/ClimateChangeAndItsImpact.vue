@@ -14,7 +14,7 @@
         >
           {{ word.text }}
         </span>
-      </p>
+      </p>  
 
       <div>
         <AudioPlayer audioSource="1.Climate change and its impact.mp3" />

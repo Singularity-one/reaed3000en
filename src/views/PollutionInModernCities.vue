@@ -40,7 +40,7 @@
           </button>
         </div> 
         
-        <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">\
+        <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">
           <ClozeTest
           :dataText="dataText"
           :wordExplanations="wordExplanations"
@@ -72,7 +72,7 @@ export default {
       wordTranslations: {},
       wordExamples: {},
       wordPartsOfSpeech: {},
-      wordCloze: {},
+      wordCloze: {},  
       selectedWord: '',
       explanationText: '',
       showClozeTest: false,
@@ -105,18 +105,18 @@ export default {
       }
     }
     
+    // 將資料從 store 取出
     this.wordExplanations = excelStore.wordExplanations;
     this.wordTranslations = excelStore.wordTranslations;
     this.wordExamples = excelStore.wordExamples;
     this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
     this.wordCloze = excelStore.wordCloze || {};
   },
-      computed: {
-        words() {
+  computed: {
+    words() {
       const explanations = this.wordExplanations || {};
       const translations = this.wordTranslations || {};
-
-      return this.dataText.split(/(\s+)/).map((word) => {
+      return this.dataText.split(/(\s+)/).map(word => {
         const cleanedWord = word.replace(/[.,!?();:"“”]/g, '').toLowerCase();
         return {
           text: word,
@@ -135,9 +135,9 @@ export default {
       }
       return this.explanationText;
     },
-      },
-      methods: {
-        handleWordClick(event) {
+  },
+  methods: {
+    handleWordClick(event) {
       const clickedWordElement = event.target.closest('.clickable-word');
       if (clickedWordElement) {
         const word = clickedWordElement.dataset.word.toLowerCase();
@@ -156,41 +156,36 @@ export default {
         this.closeExplanation();
       }
     },
-        closeExplanation() {
-          this.showExplanation = false;
-          this.showTranslation = false;
-          this.selectedWord = '';
-          this.explanationText = '';
-        },
-        toggleTranslation() {
-          this.showTranslation = !this.showTranslation;
-        },
-        transPage(item) {
-          this.$router.push(`${item}`);
-        },
-        showCloze(){
-          this.showClozeTest = true;
-        },
-        closeCloze(){
-          this.showClozeTest = false;
-        },
-      }
-    };
-      </script>
+    closeExplanation() {
+      this.showExplanation = false;
+      this.showTranslation = false;
+      this.selectedWord = '';
+      this.explanationText = '';
+      this.currentExample = '';
+    },
+    showCloze(){
+      this.showClozeTest = true;
+    },
+    closeCloze(){
+      this.showClozeTest = false;
+    },
+    transPage(item) {
+      this.$router.push(`${item}`);
+    },
+  },
+};
+</script>
       
-      <style scoped>
+<style scoped>
 .clickable-word {
   cursor: pointer;
   border-bottom: 1px dotted #007bff;
   color: #007bff;
 }
-
 .clickable-word:hover {
   background-color: #f0f8ff;
 }
-
 .explanation-text p {
   margin-bottom: 1rem;
 }
-
-      </style>
+</style>

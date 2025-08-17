@@ -40,13 +40,14 @@
         </button>
       </div> 
 
-      <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">
+        <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">\
           <ClozeTest
           :dataText="dataText"
           :wordExplanations="wordExplanations"
+          :wordCloze="wordCloze"
           :blanksCount="100"
           />
-      </div>
+        </div>
 
       </div>
     </section>
@@ -65,12 +66,13 @@ export default {
   data() {
     return {
       dataText: 'Forests are essential for life on Earth. They produce oxygen, clean the air, and provide homes for many animals. Trees help control the climate by absorbing carbon dioxide, reducing global warming. People also depend on forests for wood, medicine, and food. However, deforestation is a major problem, leading to loss of wildlife and changing weather patterns. To protect forests, governments should create strict laws, and individuals can help by planting trees and using less paper. If forests disappear, the world will face serious environmental problems. How can people balance economic growth with forest protection?',
+      showExplanation: false,
+      showTranslation: false,
       wordExplanations: {},
       wordTranslations: {},
       wordExamples: {},
       wordPartsOfSpeech: {},
-      showExplanation: false,
-      showTranslation: false, // 新增：控制是否顯示中文翻譯
+      wordCloze: {},  
       selectedWord: '',
       explanationText: '',
       showClozeTest: false,
@@ -105,7 +107,9 @@ export default {
     
     this.wordExplanations = excelStore.wordExplanations;
     this.wordTranslations = excelStore.wordTranslations;
-    this.wordExamples = excelStore.wordExamples;this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
+    this.wordExamples = excelStore.wordExamples;
+    this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
+    this.wordCloze = excelStore.wordCloze || {};
   },
   computed: {
     words() {

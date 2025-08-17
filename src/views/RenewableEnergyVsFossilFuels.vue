@@ -40,10 +40,11 @@
           </button>
         </div> 
         
-        <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">
+        <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">\
           <ClozeTest
           :dataText="dataText"
           :wordExplanations="wordExplanations"
+          :wordCloze="wordCloze"
           :blanksCount="100"
           />
         </div>
@@ -65,12 +66,13 @@ export default {
   data() {
     return {
       dataText: 'Energy is important for daily life, but how it is produced affects the planet. Fossil fuels, such as coal and oil, provide power but create pollution and contribute to climate change. In contrast, renewable energy sources like wind, solar, and water are cleaner and do not run out. Although renewable energy is better for the environment, it can be expensive to set up. Governments should invest in clean energy to reduce harm to nature. People can also help by using less electricity. In the future, will the world fully switch to renewable energy?',
+      showExplanation: false,
+      showTranslation: false,
       wordExplanations: {},
       wordTranslations: {},
       wordExamples: {},
       wordPartsOfSpeech: {},
-      showExplanation: false,
-      showTranslation: false, // 新增：控制是否顯示中文翻譯
+      wordCloze: {},
       selectedWord: '',
       explanationText: '',
       showClozeTest: false,
@@ -105,7 +107,9 @@ export default {
     
     this.wordExplanations = excelStore.wordExplanations;
     this.wordTranslations = excelStore.wordTranslations;
-    this.wordExamples = excelStore.wordExamples;this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
+    this.wordExamples = excelStore.wordExamples;
+    this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
+    this.wordCloze = excelStore.wordCloze || {};
   },
   computed: {
     words() {

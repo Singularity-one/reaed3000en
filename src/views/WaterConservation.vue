@@ -4,8 +4,8 @@
         <div class="box-range-content">
           <router-link @click="transPage('/ListTry50')" to="/about-us">back</router-link>
         </div>
-      <p class="text-spacing-sm" @click="handleWordClick">
-        <span
+        <p class="text-spacing-sm" @click="handleWordClick">
+          <span
           v-for="(word, index) in words"
           :key="index"
           :class="{ 'clickable-word': word.explanation }"
@@ -14,39 +14,40 @@
           {{ word.text }}
         </span>
       </p>
-
-            <div>
-        <AudioPlayer audioSource="5.Water conservation.mp3" />
-      </div>  
-
-      <div>
-        <WordExplanation
-        :visible="showExplanation"
-        :word="selectedWord"
-        :partOfSpeech="wordPartsOfSpeech[selectedWord]"
-        :explanation="wordExplanations[selectedWord]"
-        :translation="wordTranslations[selectedWord]"
-        :example="wordExamples[selectedWord]"
-        @close="showExplanation = false"
-        />
-      </div>
-      
-      <div class="box-range-content" style="display: flex; gap: 10px; align-items: center; margin-top: 1rem;">
-        <button @click="showCloze" style="padding: 5px;">
-          <i class="box-project-meta-icon linearicons-book"></i>
-        </button>
-        <button @click="closeCloze" style="padding: 5px;">
-          <i class="box-project-meta-icon linearicons-book2"></i>
-        </button>
-      </div> 
-
-      <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">
+        
+        <div>
+          <AudioPlayer audioSource="5.Water conservation.mp3" />
+        </div>
+        
+        <div>
+          <WordExplanation
+          :visible="showExplanation"
+          :word="selectedWord"
+          :partOfSpeech="wordPartsOfSpeech[selectedWord]"
+          :explanation="wordExplanations[selectedWord]"
+          :translation="wordTranslations[selectedWord]"
+          :example="wordExamples[selectedWord]"
+          @close="showExplanation = false"
+          />
+        </div>
+        
+        <div class="box-range-content" style="display: flex; gap: 10px; align-items: center; margin-top: 1rem;">
+          <button @click="showCloze" style="padding: 5px;">
+            <i class="box-project-meta-icon linearicons-book"></i>
+          </button>
+          <button @click="closeCloze" style="padding: 5px;">
+            <i class="box-project-meta-icon linearicons-book2"></i>
+          </button>
+        </div> 
+        
+        <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">
           <ClozeTest
           :dataText="dataText"
           :wordExplanations="wordExplanations"
+          :wordCloze="wordCloze"
           :blanksCount="100"
           />
-      </div>
+        </div>
 
       </div>
     </section>
@@ -64,12 +65,13 @@ export default {
   data() {
     return {
       dataText: 'Water is one of the most valuable resources on Earth, but many people waste it. In some places, clean water is limited, and droughts make the problem worse. Saving water is important for the environment and future generations . People can help by turning off taps, fixing leaks, and using less water for daily tasks. Governments should also improve water systems and promote recycling. Farmers can use better methods to reduce waste in agriculture. If everyone makes small changes, water shortages can be reduced. What are the best ways to encourage people to use water wisely?',
+      showExplanation: false,
+      showTranslation: false,
       wordExplanations: {},
       wordTranslations: {},
       wordExamples: {},
       wordPartsOfSpeech: {},
-      showExplanation: false,
-      showTranslation: false, // 新增：控制是否顯示中文翻譯
+      wordCloze: {},  
       selectedWord: '',
       explanationText: '',
       showClozeTest: false,
@@ -102,16 +104,18 @@ export default {
       }
     }
     
+    // 將資料從 store 取出
     this.wordExplanations = excelStore.wordExplanations;
     this.wordTranslations = excelStore.wordTranslations;
-    this.wordExamples = excelStore.wordExamples;this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
+    this.wordExamples = excelStore.wordExamples;
+    this.wordPartsOfSpeech = excelStore.wordPartsOfSpeech;
+    this.wordCloze = excelStore.wordCloze || {};
   },
   computed: {
     words() {
       const explanations = this.wordExplanations || {};
       const translations = this.wordTranslations || {};
-
-      return this.dataText.split(/(\s+)/).map((word) => {
+      return this.dataText.split(/(\s+)/).map(word => {
         const cleanedWord = word.replace(/[.,!?();:"“”]/g, '').toLowerCase();
         return {
           text: word,
@@ -177,11 +181,9 @@ export default {
   border-bottom: 1px dotted #007bff;
   color: #007bff;
 }
-
 .clickable-word:hover {
   background-color: #f0f8ff;
 }
-
 .explanation-text p {
   margin-bottom: 1rem;
 }

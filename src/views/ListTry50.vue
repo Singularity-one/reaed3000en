@@ -99,7 +99,7 @@
                 height="345"
                 loading="lazy"
               />
-            </div>
+            </div>  
             <RouterLink to="/BenefitsOfExercise" @click="transPage('/BenefitsOfExercise')">Benefits of exercise</RouterLink>&nbsp;
           </div>
         </div>
