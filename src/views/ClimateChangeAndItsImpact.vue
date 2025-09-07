@@ -3,7 +3,7 @@
     <div class="container">
       <div class="box-range-content">
         <router-link @click="transPage('/ListTry50')" to="/about-us">back</router-link>
-      </div>
+      </div>  
 
       <p class="text-spacing-sm" @click="handleWordClick">
         <span
