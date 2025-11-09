@@ -22,13 +22,13 @@
 
       <div>
         <WordExplanation
-          :visible="showExplanation"
-          :word="selectedWord"
-          :partOfSpeech="wordPartsOfSpeech[selectedWord]"
-          :explanation="wordExplanations[selectedWord]"
-          :translation="wordTranslations[selectedWord]"
-          :example="wordExamples[selectedWord]"
-          @close="showExplanation = false"
+        :visible="showExplanation"
+        :word="selectedWord"
+        :partOfSpeech="wordPartsOfSpeech[selectedWord]"
+        :explanation="wordExplanations[selectedWord]"
+        :translation="wordTranslations[selectedWord]"
+        :example="wordExamples[selectedWord]"
+        @close="showExplanation = false"
         />
       </div>
       
@@ -38,6 +38,9 @@
         </button>
         <button @click="closeCloze" style="padding: 5px;">
           <i class="box-project-meta-icon linearicons-book2"></i>
+        </button>
+        <button @click="showTypingPractice" style="padding: 5px;">
+          <i class="box-project-meta-icon linearicons-typewriter"></i>
         </button>
       </div> 
 
@@ -49,15 +52,14 @@
           :blanksCount="100"
         />
       </div>
-
-       <div>
+       <div v-if="showTypingPracticeTest">
         <TypingPractice 
-        :text="dataText"
+        :text="typingWord" 
         :showKeyboard="true"
         correctSound="@/sounds/correct.mp3"
         errorSound="@/sounds/error.mp3"
-    />
-  </div>
+        />
+      </div>
     </div>
   </section>
 </template>
@@ -89,6 +91,8 @@ export default {
       wordPartsOfSpeech: {},
       wordCloze: {},
       showClozeTest: false,
+      showTypingPracticeTest: false,
+      typingWord: '',
     };
   },
   async created() {
@@ -164,6 +168,7 @@ export default {
           this.currentExample = example || '';
           this.showExplanation = true;
           this.showTranslation = false;
+          this.typingWord = word;
         }
       } else {
         this.closeExplanation();
@@ -175,6 +180,7 @@ export default {
       this.selectedWord = '';
       this.explanationText = '';
       this.currentExample = '';
+      this.typingWord = '';
     },
     showCloze(){
       this.showClozeTest = true;
@@ -184,6 +190,12 @@ export default {
     },
     transPage(item) {
       this.$router.push(`${item}`);
+    },
+    showTypingPractice(){
+      this.showTypingPracticeTest = true;
+    },
+    closeTypingPractice(){
+      this.showTypingPracticeTest = false;
     },
   },
 };

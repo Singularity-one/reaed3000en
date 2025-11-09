@@ -170,6 +170,14 @@ export default {
       ]
     };
   },
+  watch:{
+    text(newVal) {
+      if (newVal && newVal.trim() !== '') {
+        this.practiceText = newVal;  // 更新練習文字
+        this.restart();              // 重置盲打進度
+        }
+      },
+  },
   computed: {
     currentChar() {
       return this.practiceText[this.currentIndex]?.toLowerCase() || '';
