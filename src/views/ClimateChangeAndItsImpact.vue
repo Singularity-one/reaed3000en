@@ -49,6 +49,15 @@
           :blanksCount="100"
         />
       </div>
+
+       <div>
+        <TypingPractice 
+        :text="dataText"
+        :showKeyboard="true"
+        correctSound="@/sounds/correct.mp3"
+        errorSound="@/sounds/error.mp3"
+    />
+  </div>
     </div>
   </section>
 </template>
@@ -59,12 +68,14 @@ import { useExcelStore } from '@/stores/excelStore';
 import ClozeTest from '@/components/ClozeTest.vue';
 import AudioPlayer from "@/components/AudioPlayer.vue";
 import WordExplanation from '@/components/WordExplanation.vue';
+import TypingPractice from '@/components/TypingPractice.vue';
 
 export default {
   name: 'ClimateChangeAndItsImpact',
-  components: { ClozeTest, AudioPlayer, WordExplanation },
+  components: { ClozeTest, AudioPlayer, WordExplanation,TypingPractice },
   data() {
     return {
+      practiceText: "The quick brown fox jumps over the lazy dog",
       dataText:
         'Climate change is a serious problem affecting the world. Rising temperatures cause extreme weather, such as storms, droughts, and floods. Ice in the polar regions is melting, leading to higher sea levels that threaten coastal areas. Many animals lose their homes as forests disappear. People also face health risks due to heat and poor air quality. To reduce climate change, countries must cut pollution and use clean energy. Individuals can help by saving electricity and planting trees. If action is not taken soon, future generations will suffer. What do you think is the most effective way to fight climate change?',
       showExplanation: false,

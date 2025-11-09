@@ -40,7 +40,7 @@
           </button>
         </div> 
         
-        <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">\
+        <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">
           <ClozeTest
           :dataText="dataText"
           :wordExplanations="wordExplanations"
