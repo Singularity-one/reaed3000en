@@ -5,6 +5,7 @@
         <router-link @click="transPage('/ListTry50')" to="/about-us">back</router-link>
       </div>  
 
+      <!-- 短文 -->
       <p class="text-spacing-sm" @click="handleWordClick">
         <span
           v-for="(word, index) in words"
@@ -16,22 +17,25 @@
         </span>
       </p>  
 
+      <!-- AudioPlayer -->
       <div>
         <AudioPlayer audioSource="1.Climate change and its impact.mp3" />
       </div>  
 
+      <!-- WordExplanation -->
       <div>
         <WordExplanation
-        :visible="showExplanation"
-        :word="selectedWord"
-        :partOfSpeech="wordPartsOfSpeech[selectedWord]"
-        :explanation="wordExplanations[selectedWord]"
-        :translation="wordTranslations[selectedWord]"
-        :example="wordExamples[selectedWord]"
-        @close="showExplanation = false"
+          :visible="showExplanation"
+          :word="selectedWord"
+          :partOfSpeech="wordPartsOfSpeech[selectedWord]"
+          :explanation="wordExplanations[selectedWord]"
+          :translation="wordTranslations[selectedWord]"
+          :example="wordExamples[selectedWord]"
+          @close="showExplanation = false"
         />
       </div>
-      
+
+      <!-- ClozeTest 控制按鈕 -->
       <div class="box-range-content" style="display: flex; gap: 10px; align-items: center; margin-top: 1rem;">
         <button @click="showCloze" style="padding: 5px;">
           <i class="box-project-meta-icon linearicons-book"></i>
@@ -39,11 +43,9 @@
         <button @click="closeCloze" style="padding: 5px;">
           <i class="box-project-meta-icon linearicons-book2"></i>
         </button>
-        <button @click="showTypingPractice" style="padding: 5px;">
-          <i class="box-project-meta-icon linearicons-typewriter"></i>
-        </button>
       </div> 
 
+      <!-- ClozeTest 元件 -->
       <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">
         <ClozeTest
           :dataText="dataText"
@@ -52,14 +54,16 @@
           :blanksCount="100"
         />
       </div>
-       <div v-if="showTypingPracticeTest">
+
+      <!-- TypingPractice 元件 -->
+      <div v-if="showTypingPractice" style="margin-top: 20px;">
         <TypingPractice 
-        :text="typingWord" 
-        :showKeyboard="true"
-        correctSound="@/sounds/correct.mp3"
-        errorSound="@/sounds/error.mp3"
+          :text="typingWord" 
+          :showKeyboard="true"
+          @close="showTypingPractice = false"
         />
       </div>
+
     </div>
   </section>
 </template>
@@ -74,46 +78,39 @@ import TypingPractice from '@/components/TypingPractice.vue';
 
 export default {
   name: 'ClimateChangeAndItsImpact',
-  components: { ClozeTest, AudioPlayer, WordExplanation,TypingPractice },
+  components: { ClozeTest, AudioPlayer, WordExplanation, TypingPractice },
   data() {
     return {
-      practiceText: "The quick brown fox jumps over the lazy dog",
-      dataText:
-        'Climate change is a serious problem affecting the world. Rising temperatures cause extreme weather, such as storms, droughts, and floods. Ice in the polar regions is melting, leading to higher sea levels that threaten coastal areas. Many animals lose their homes as forests disappear. People also face health risks due to heat and poor air quality. To reduce climate change, countries must cut pollution and use clean energy. Individuals can help by saving electricity and planting trees. If action is not taken soon, future generations will suffer. What do you think is the most effective way to fight climate change?',
+      dataText: 'Climate change is a serious problem affecting the world. Rising temperatures cause extreme weather, such as storms, droughts, and floods. Ice in the polar regions is melting, leading to higher sea levels that threaten coastal areas. Many animals lose their homes as forests disappear. People also face health risks due to heat and poor air quality. To reduce climate change, countries must cut pollution and use clean energy. Individuals can help by saving electricity and planting trees. If action is not taken soon, future generations will suffer. What do you think is the most effective way to fight climate change?',
       showExplanation: false,
-      showTranslation: false,
       selectedWord: '',
-      explanationText: '',
-      currentExample: '',
       wordExplanations: {},
       wordTranslations: {},
       wordExamples: {},
       wordPartsOfSpeech: {},
       wordCloze: {},
       showClozeTest: false,
-      showTypingPracticeTest: false,
       typingWord: '',
+      showTypingPractice: false,
     };
   },
   async created() {
     const excelStore = useExcelStore();
-    if (
-      Object.keys(excelStore.wordExplanations).length === 0 ||
-      Object.keys(excelStore.wordTranslations).length === 0
-    ) {
+    if (Object.keys(excelStore.wordExplanations).length === 0) {
       try {
         const url = process.env.BASE_URL + 'excel/default.xlsx';
         const response = await fetch(url);
         const arrayBuffer = await response.arrayBuffer();
         const data = new Uint8Array(arrayBuffer);
         const workbook = XLSX.read(data, { type: 'array' });
-        
+
         let allData = [];
         workbook.SheetNames.forEach(sheetName => {
           const worksheet = workbook.Sheets[sheetName];
           const jsonData = XLSX.utils.sheet_to_json(worksheet);
           allData = allData.concat(jsonData);
         });
+
         if (allData.length > 0) {
           excelStore.setExcelData(Object.keys(allData[0]), allData);
         }
@@ -121,8 +118,7 @@ export default {
         console.error('載入預設 Excel 失敗:', error);
       }
     }
-    
-    // 將資料從 store 取出
+
     this.wordExplanations = excelStore.wordExplanations;
     this.wordTranslations = excelStore.wordTranslations;
     this.wordExamples = excelStore.wordExamples;
@@ -142,16 +138,7 @@ export default {
           translation: translations[cleanedWord],
         };
       });
-    },
-    currentExplanation() {
-      if (
-        this.showTranslation &&
-        this.wordTranslations[this.selectedWord.toLowerCase()]
-      ) {
-        return this.wordTranslations[this.selectedWord.toLowerCase()];
-      }
-      return this.explanationText;
-    },
+    }
   },
   methods: {
     handleWordClick(event) {
@@ -164,11 +151,9 @@ export default {
 
         if (explanation || translation || example) {
           this.selectedWord = word;
-          this.explanationText = explanation || '';
-          this.currentExample = example || '';
           this.showExplanation = true;
-          this.showTranslation = false;
           this.typingWord = word;
+          this.showTypingPractice = true;
         }
       } else {
         this.closeExplanation();
@@ -176,28 +161,18 @@ export default {
     },
     closeExplanation() {
       this.showExplanation = false;
-      this.showTranslation = false;
       this.selectedWord = '';
-      this.explanationText = '';
-      this.currentExample = '';
-      this.typingWord = '';
     },
-    showCloze(){
+    showCloze() {
       this.showClozeTest = true;
     },
-    closeCloze(){
+    closeCloze() {
       this.showClozeTest = false;
     },
     transPage(item) {
       this.$router.push(`${item}`);
-    },
-    showTypingPractice(){
-      this.showTypingPracticeTest = true;
-    },
-    closeTypingPractice(){
-      this.showTypingPracticeTest = false;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -209,8 +184,5 @@ export default {
 }
 .clickable-word:hover {
   background-color: #f0f8ff;
-}
-.explanation-text p {
-  margin-bottom: 1rem;
 }
 </style>

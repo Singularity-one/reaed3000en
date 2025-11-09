@@ -48,6 +48,15 @@
           :blanksCount="100"
           />
         </div>
+
+        <!-- TypingPractice 元件 -->
+        <div v-if="showTypingPractice" style="margin-top: 20px;">
+          <TypingPractice 
+          :text="typingWord" 
+          :showKeyboard="true"
+          @close="showTypingPractice = false"
+          />
+        </div>
     
       </div>
     </section>
@@ -60,9 +69,10 @@ import { useExcelStore } from '@/stores/excelStore';
 import ClozeTest from '@/components/ClozeTest.vue';
 import AudioPlayer from "@/components/AudioPlayer.vue";
 import WordExplanation from '@/components/WordExplanation.vue';
+import TypingPractice from '@/components/TypingPractice.vue';
 export default {
   name: 'PollutionInModernCities',
-  components: { ClozeTest,AudioPlayer,WordExplanation },
+  components: { ClozeTest,AudioPlayer,WordExplanation ,TypingPractice},
   data() {
     return {
       dataText: 'Many cities face serious pollution problems due to traffic, industry, and waste. Smoke from cars and factories makes the air unhealthy, causing breathing issues. Rubbish in streets and rivers leads to dirty water and harms wildlife. Noise from vehicles and construction also affects people’s well-being. To improve the situation, public transport should be better, and recycling must increase. Green spaces can help clean the air and make cities more pleasant. Governments and individuals need to work together to reduce pollution. If people act now, cities will become healthier and safer for future generations. What solutions do you suggest?',
@@ -76,6 +86,8 @@ export default {
       selectedWord: '',
       explanationText: '',
       showClozeTest: false,
+      typingWord: '',
+      showTypingPractice: false,
     };
   },
   async created() {
@@ -151,6 +163,9 @@ export default {
           this.currentExample = example || '';
           this.showExplanation = true;
           this.showTranslation = false;
+
+          this.typingWord = word;
+          this.showTypingPractice = true;
         }
       } else {
         this.closeExplanation();
