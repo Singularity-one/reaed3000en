@@ -1,44 +1,34 @@
 <template>
   <div class="typing-practice">
-    <!-- 關閉按鈕 -->
-    <div class="controls" style="justify-content: flex-end;">
+    
+    <div class="top-bar">
+      <div class="practice-count">練習次數：{{ practiceCount }}</div>
       <button @click="$emit('close')" class="btn btn-danger">close</button>
     </div>
 
     <!-- 練習文字顯示 -->
-    <div class="text-display" @click="focusInput">
-      <span 
-        v-for="(char, index) in practiceText" 
+    <div class="text-display">
+      <span
+        v-for="(char, index) in practiceText"
         :key="index"
-        :class="getCharClass(index)">
+        :class="getCharClass(index)"
+      >
         {{ char === ' ' ? '␣' : char }}
       </span>
     </div>
 
-    <!-- 隱藏輸入區 -->
-    <input 
-      ref="hiddenInput"
-      v-model="userInput"
-      @input="handleInput"
-      @keydown="handleKeydown"
-      class="hidden-input"
-      :disabled="finished"
-      autocomplete="off"
-      spellcheck="false"
-    />
-
-    <!-- 控制按鈕 -->
-    <!-- <div class="controls">
-      <button @click="restart" class="btn btn-primary">重新開始</button>
-    </div> -->
-
     <!-- 鍵盤圖示 (可選) -->
     <div v-if="showKeyboard" class="keyboard-layout">
-      <div class="keyboard-row" v-for="(row, rowIndex) in keyboardRows" :key="rowIndex">
-        <div 
-          v-for="key in row" 
+      <div
+        class="keyboard-row"
+        v-for="(row, rowIndex) in keyboardRows"
+        :key="rowIndex"
+      >
+        <div
+          v-for="key in row"
           :key="key"
-          :class="['key', getKeyClass(key)]">
+          :class="['key', getKeyClass(key)]"
+        >
           {{ key === ' ' ? 'rest' : key }}
         </div>
       </div>
@@ -52,98 +42,82 @@ export default {
   props: {
     text: {
       type: String,
-      default: "The quick brown fox jumps over the lazy dog"
+      default: "The quick brown fox jumps over the lazy dog",
     },
     showKeyboard: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       practiceText: "",
-      userInput: "",
       currentIndex: 0,
       finished: false,
+      practiceCount: 0, // ✅ 新增練習次數
       keyboardRows: [
-        ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-        ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';'],
-        ['z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/'],
-        [' ']
-      ]
+        ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        ["a", "s", "d", "f", "g", "h", "j", "k", "l", ";"],
+        ["z", "x", "c", "v", "b", "n", "m", ",", ".", "/"],
+        [" "],
+      ],
     };
   },
   watch: {
     text(newVal) {
-      if (newVal && newVal.trim() !== '') {
+      if (newVal && newVal.trim() !== "") {
         this.practiceText = newVal;
-        this.reset();
+        this.practiceCount = 0; // ✅ 新單字時重置練習次數
+        this.restart();
       }
     },
   },
   computed: {
     currentChar() {
-      return this.practiceText[this.currentIndex]?.toLowerCase() || '';
-    }
+      return this.practiceText[this.currentIndex]?.toLowerCase() || "";
+    },
   },
   mounted() {
     this.practiceText = this.text;
-    this.focusInput();
-
-    // 監聽空白鍵重新開始
-    window.addEventListener('keydown', this.handleGlobalKey);
+    window.addEventListener("keydown", this.handleKeyInput);
   },
   beforeUnmount() {
-    window.removeEventListener('keydown', this.handleGlobalKey);
+    window.removeEventListener("keydown", this.handleKeyInput);
   },
   methods: {
-    handleInput(event) {
-      const inputChar = (event.data || '').toLowerCase(); // 忽略大小寫
-      if (inputChar === this.currentChar) {
+    handleKeyInput(event) {
+      if (this.finished) {
+        if (event.code === "Space") {
+          event.preventDefault();
+          this.restart();
+        }
+        return;
+      }
+
+      const key = event.key.toLowerCase();
+      const expected = this.currentChar.toLowerCase();
+
+      if (key === expected) {
         this.currentIndex++;
         if (this.currentIndex >= this.practiceText.length) {
           this.finished = true;
         }
       }
-      this.$nextTick(() => {
-        this.userInput = '';
-      });
-    },
-    handleKeydown(event) {
-      if (event.key === 'Backspace' || event.key === 'Delete') {
-        event.preventDefault();
-      }
-    },
-    handleGlobalKey(event) {
-      // 空白鍵重新開始
-      if (event.code === 'Space' && this.finished) {
-        event.preventDefault();
-        this.restart();
-      }
     },
     restart() {
-      this.userInput = '';
       this.currentIndex = 0;
       this.finished = false;
-      this.$nextTick(() => {
-        this.focusInput();
-      });
-    },
-    focusInput() {
-      this.$refs.hiddenInput?.focus();
+      this.practiceCount++; // ✅ 每次重新開始+1
     },
     getCharClass(index) {
-      if (index < this.currentIndex) return 'char typed correct';
-      if (index === this.currentIndex) return 'char current';
-      return 'char pending';
+      if (index < this.currentIndex) return "char typed correct";
+      if (index === this.currentIndex) return "char current";
+      return "char pending";
     },
     getKeyClass(key) {
-      return key.toLowerCase() === this.currentChar ? 'highlight' : '';
+      return key.toLowerCase() === this.currentChar ? "highlight" : "";
     },
-    reset() {
-      this.restart();
-    }
-  }
+  },
 };
 </script>
 
@@ -152,10 +126,18 @@ export default {
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: white; /* 移除紫色漸層 */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.practice-count {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 10px;
 }
 
 /* 文字顯示區 */
@@ -165,7 +147,7 @@ export default {
   border-radius: 10px;
   font-size: 28px;
   line-height: 1.8;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   letter-spacing: 2px;
   margin-bottom: 20px;
   min-height: 120px;
@@ -191,19 +173,17 @@ export default {
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 
 .char.pending {
   color: #95a5a6;
-}
-
-/* 隱藏輸入框 */
-.hidden-input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
 }
 
 /* 控制按鈕 */
@@ -223,8 +203,14 @@ export default {
   font-weight: 600;
 }
 
-.btn-primary { background: #3498db; color: white; }
-.btn-danger { background: #e74c3c; color: white; }
+.btn-primary {
+  background: #3498db;
+  color: white;
+}
+.btn-danger {
+  background: #e74c3c;
+  color: white;
+}
 
 .btn:hover {
   opacity: 0.9;
@@ -234,7 +220,7 @@ export default {
 .keyboard-layout {
   margin-top: 20px;
   padding: 20px;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
 }
 
@@ -254,7 +240,7 @@ export default {
   background: #ecf0f1;
   border: 2px solid #bdc3c7;
   border-radius: 5px;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-weight: bold;
   font-size: 18px;
   color: #34495e;
@@ -271,5 +257,33 @@ export default {
 
 .keyboard-row:last-child .key {
   width: 300px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between; /* 左右分開 */
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.practice-count {
+  font-size: 18px;
+  font-weight: 600;
+  color: #555;
+}
+
+.btn-danger {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-danger:hover {
+  opacity: 0.9;
 }
 </style>

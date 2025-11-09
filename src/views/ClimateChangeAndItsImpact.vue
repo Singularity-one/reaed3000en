@@ -56,13 +56,13 @@
       </div>
 
       <!-- TypingPractice 元件 -->
-      <div v-if="showTypingPractice" style="margin-top: 20px;">
-        <TypingPractice 
-          :text="typingWord" 
-          :showKeyboard="true"
-          @close="showTypingPractice = false"
-        />
-      </div>
+       <TypingPractice 
+       v-if="showTypingPractice"
+       :key="typingWord"  
+       :text="typingWord"
+       :showKeyboard="true"
+       @close="showTypingPractice = false"
+       />
 
     </div>
   </section>
