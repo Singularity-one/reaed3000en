@@ -43,6 +43,9 @@
         <button @click="closeCloze" style="padding: 5px;">
           <i class="box-project-meta-icon linearicons-book2"></i>
         </button>
+        <button @click="checkTypingPractice" style="padding: 5px;">
+          <i class="box-project-meta-icon linearicons-typewriter"></i>
+        </button>
       </div> 
 
       <!-- ClozeTest 元件 -->
@@ -153,7 +156,6 @@ export default {
           this.selectedWord = word;
           this.showExplanation = true;
           this.typingWord = word;
-          this.showTypingPractice = true;
         }
       } else {
         this.closeExplanation();
@@ -171,7 +173,15 @@ export default {
     },
     transPage(item) {
       this.$router.push(`${item}`);
-    }
+    },
+    checkTypingPractice(){
+      console.log("this.showTypingPractice:",this.showTypingPractice)
+      if(this.showTypingPractice){
+        this.showTypingPractice = false;
+      }else{
+        this.showTypingPractice = true;
+      }
+    },
   }
 };
 </script>

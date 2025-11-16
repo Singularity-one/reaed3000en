@@ -1,9 +1,11 @@
 <template>
-    <section class="section section-lg text-center text-md-start bg-default">
-      <div class="container">
-        <div class="box-range-content">
-          <router-link @click="transPage('/ListTry50')" to="/about-us">back</router-link>
-        </div>
+  <section class="section section-lg text-center text-md-start bg-default">
+    <div class="container">
+      <div class="box-range-content">
+        <router-link @click="transPage('/ListTry50')" to="/about-us"
+          >back</router-link
+        >
+      </div>
       <p class="text-spacing-sm" @click="handleWordClick">
         <span
           v-for="(word, index) in words"
@@ -15,67 +17,87 @@
         </span>
       </p>
 
-            <div>
+      <div>
         <AudioPlayer audioSource="4.The importance of forests.mp3" />
-      </div>  
+      </div>
 
       <div>
         <WordExplanation
-        :visible="showExplanation"
-        :word="selectedWord"
-        :partOfSpeech="wordPartsOfSpeech[selectedWord]"
-        :explanation="wordExplanations[selectedWord]"
-        :translation="wordTranslations[selectedWord]"
-        :example="wordExamples[selectedWord]"
-        @close="showExplanation = false"
+          :visible="showExplanation"
+          :word="selectedWord"
+          :partOfSpeech="wordPartsOfSpeech[selectedWord]"
+          :explanation="wordExplanations[selectedWord]"
+          :translation="wordTranslations[selectedWord]"
+          :example="wordExamples[selectedWord]"
+          @close="showExplanation = false"
         />
       </div>
-      
-      <div class="box-range-content" style="display: flex; gap: 10px; align-items: center; margin-top: 1rem;">
-        <button @click="showCloze" style="padding: 5px;">
+
+      <div
+        class="box-range-content"
+        style="display: flex; gap: 10px; align-items: center; margin-top: 1rem"
+      >
+        <button @click="showCloze" style="padding: 5px">
           <i class="box-project-meta-icon linearicons-book"></i>
         </button>
-        <button @click="closeCloze" style="padding: 5px;">
+        <button @click="closeCloze" style="padding: 5px">
           <i class="box-project-meta-icon linearicons-book2"></i>
         </button>
-      </div> 
+        <button @click="checkTypingPractice" style="padding: 5px">
+          <i class="box-project-meta-icon linearicons-typewriter"></i>
+        </button>
+      </div>
 
-        <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">
-          <ClozeTest
+      <div v-if="showClozeTest" class="row row-40 row-lg-50 explanation-text">
+        <ClozeTest
           :dataText="dataText"
           :wordExplanations="wordExplanations"
           :wordCloze="wordCloze"
           :blanksCount="100"
-          />
-        </div>
-
+        />
       </div>
-    </section>
+
+      <!-- TypingPractice 元件 -->
+      <div v-if="showTypingPractice" style="margin-top: 20px">
+        <TypingPractice
+          v-if="showTypingPractice"
+          :key="typingWord"
+          :text="typingWord"
+          :showKeyboard="true"
+          @close="showTypingPractice = false"
+        />
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-import * as XLSX from 'xlsx';
-import { useExcelStore } from '@/stores/excelStore';
-import ClozeTest from '@/components/ClozeTest.vue';
+import * as XLSX from "xlsx";
+import { useExcelStore } from "@/stores/excelStore";
+import ClozeTest from "@/components/ClozeTest.vue";
 import AudioPlayer from "@/components/AudioPlayer.vue";
-import WordExplanation from '@/components/WordExplanation.vue';
+import WordExplanation from "@/components/WordExplanation.vue";
+import TypingPractice from "@/components/TypingPractice.vue";
 
 export default {
-  name: 'TheImportanceOfForests',
-  components: { ClozeTest,AudioPlayer,WordExplanation },
+  name: "TheImportanceOfForests",
+  components: { ClozeTest, AudioPlayer, WordExplanation, TypingPractice },
   data() {
     return {
-      dataText: 'Forests are essential for life on Earth. They produce oxygen, clean the air, and provide homes for many animals. Trees help control the climate by absorbing carbon dioxide, reducing global warming. People also depend on forests for wood, medicine, and food. However, deforestation is a major problem, leading to loss of wildlife and changing weather patterns. To protect forests, governments should create strict laws, and individuals can help by planting trees and using less paper. If forests disappear, the world will face serious environmental problems. How can people balance economic growth with forest protection?',
+      dataText:
+        "Forests are essential for life on Earth. They produce oxygen, clean the air, and provide homes for many animals. Trees help control the climate by absorbing carbon dioxide, reducing global warming. People also depend on forests for wood, medicine, and food. However, deforestation is a major problem, leading to loss of wildlife and changing weather patterns. To protect forests, governments should create strict laws, and individuals can help by planting trees and using less paper. If forests disappear, the world will face serious environmental problems. How can people balance economic growth with forest protection?",
       showExplanation: false,
       showTranslation: false,
       wordExplanations: {},
       wordTranslations: {},
       wordExamples: {},
       wordPartsOfSpeech: {},
-      wordCloze: {},  
-      selectedWord: '',
-      explanationText: '',
+      wordCloze: {},
+      selectedWord: "",
+      explanationText: "",
       showClozeTest: false,
+      typingWord: "",
+      showTypingPractice: false,
     };
   },
   async created() {
@@ -85,14 +107,14 @@ export default {
       Object.keys(excelStore.wordTranslations).length === 0
     ) {
       try {
-        const url = process.env.BASE_URL + 'excel/default.xlsx';
+        const url = process.env.BASE_URL + "excel/default.xlsx";
         const response = await fetch(url);
         const arrayBuffer = await response.arrayBuffer();
         const data = new Uint8Array(arrayBuffer);
-        const workbook = XLSX.read(data, { type: 'array' });
-        
+        const workbook = XLSX.read(data, { type: "array" });
+
         let allData = [];
-        workbook.SheetNames.forEach(sheetName => {
+        workbook.SheetNames.forEach((sheetName) => {
           const worksheet = workbook.Sheets[sheetName];
           const jsonData = XLSX.utils.sheet_to_json(worksheet);
           allData = allData.concat(jsonData);
@@ -101,10 +123,10 @@ export default {
           excelStore.setExcelData(Object.keys(allData[0]), allData);
         }
       } catch (error) {
-        console.error('載入預設 Excel 失敗:', error);
+        console.error("載入預設 Excel 失敗:", error);
       }
     }
-    
+
     this.wordExplanations = excelStore.wordExplanations;
     this.wordTranslations = excelStore.wordTranslations;
     this.wordExamples = excelStore.wordExamples;
@@ -117,7 +139,7 @@ export default {
       const translations = this.wordTranslations || {};
 
       return this.dataText.split(/(\s+)/).map((word) => {
-        const cleanedWord = word.replace(/[.,!?();:"“”]/g, '').toLowerCase();
+        const cleanedWord = word.replace(/[.,!?();:"“”]/g, "").toLowerCase();
         return {
           text: word,
           cleanText: cleanedWord,
@@ -138,7 +160,7 @@ export default {
   },
   methods: {
     handleWordClick(event) {
-      const clickedWordElement = event.target.closest('.clickable-word');
+      const clickedWordElement = event.target.closest(".clickable-word");
       if (clickedWordElement) {
         const word = clickedWordElement.dataset.word.toLowerCase();
         const explanation = this.wordExplanations[word];
@@ -147,10 +169,11 @@ export default {
 
         if (explanation || translation || example) {
           this.selectedWord = word;
-          this.explanationText = explanation || '';
-          this.currentExample = example || '';
+          this.explanationText = explanation || "";
+          this.currentExample = example || "";
           this.showExplanation = true;
           this.showTranslation = false;
+          this.typingWord = word;
         }
       } else {
         this.closeExplanation();
@@ -159,18 +182,26 @@ export default {
     closeExplanation() {
       this.showExplanation = false;
       this.showTranslation = false;
-      this.selectedWord = '';
-      this.explanationText = '';
-      this.currentExample = '';
+      this.selectedWord = "";
+      this.explanationText = "";
+      this.currentExample = "";
     },
-    showCloze(){
+    showCloze() {
       this.showClozeTest = true;
     },
-    closeCloze(){
+    closeCloze() {
       this.showClozeTest = false;
     },
     transPage(item) {
       this.$router.push(`${item}`);
+    },
+    checkTypingPractice() {
+      console.log("this.showTypingPractice:", this.showTypingPractice);
+      if (this.showTypingPractice) {
+        this.showTypingPractice = false;
+      } else {
+        this.showTypingPractice = true;
+      }
     },
   },
 };
