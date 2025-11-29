@@ -1,25 +1,32 @@
 <template>
   <div v-if="visible" class="chunk-list-overlay" @click.self="$emit('close')">
     <div class="chunk-list-panel">
-      <!-- 標題列 -->
       <div class="chunk-header">
         <h3>Chunks ({{ chunkStore.chunks.length }})</h3>
         <button @click="$emit('close')" class="close-btn">&times;</button>
       </div>
 
-      <!-- 篩選器 -->
       <div class="chunk-filter">
         <label>Filter type:</label>
         <select v-model="filterType">
           <option value="all">all ({{ chunkStore.chunks.length }})</option>
-          <option value="collocation">collocation ({{ stats.byType.collocation }})</option>
-          <option value="phrasal_verb">phrasal verb ({{ stats.byType.phrasal_verb }})</option>
+          <option value="collocation">
+            collocation ({{ stats.byType.collocation }})
+          </option>
+          <option value="phrasal_verb">
+            phrasal verb ({{ stats.byType.phrasal_verb }})
+          </option>
           <option value="idiom">idiom ({{ stats.byType.idiom }})</option>
-          <option value="fixed_phrase">fixed phrase ({{ stats.byType.fixed_phrase }})</option>
+          <option value="fixed_phrase">
+            fixed phrase ({{ stats.byType.fixed_phrase }})
+          </option>
+          <option value="noun_phrase">
+            noun phrase ({{ stats.byType.noun_phrase }})
+          </option>
+          <option value="phrase">phrase ({{ stats.byType.phrase }})</option>
         </select>
       </div>
 
-      <!-- 統計資訊 -->
       <div class="chunk-stats">
         <div class="stat-item">
           <span class="stat-label">collocation:</span>
@@ -39,28 +46,27 @@
         </div>
       </div>
 
-      <!-- Chunks 列表 -->
       <div class="chunk-list-content">
-        <div 
-          v-for="chunk in filteredChunks" 
-          :key="chunk" 
-          class="chunk-item"
-        >
+        <div v-for="chunk in filteredChunks" :key="chunk" class="chunk-item">
           <div class="chunk-title">
             <strong>{{ chunk }}</strong>
-            <span 
+            <span
               v-if="chunkStore.chunkTypes[chunk]"
-              class="chunk-type-badge" 
+              class="chunk-type-badge"
               :class="`badge-${chunkStore.chunkTypes[chunk]}`"
             >
               {{ getTypeLabel(chunkStore.chunkTypes[chunk]) }}
             </span>
+            <button @click.stop="speakText(chunk)" class="speak-btn">🔊</button>
           </div>
-          
-          <p v-if="chunkStore.chunkExplanations[chunk]" class="chunk-explanation">
+
+          <p
+            v-if="chunkStore.chunkExplanations[chunk]"
+            class="chunk-explanation"
+          >
             {{ chunkStore.chunkExplanations[chunk] }}
           </p>
-          
+
           <p v-if="chunkStore.chunkExamples[chunk]" class="chunk-example">
             <em>{{ chunkStore.chunkExamples[chunk] }}</em>
           </p>
@@ -75,20 +81,20 @@
 </template>
 
 <script>
-import { useChunkStore } from '@/stores/chunkStore';
+import { useChunkStore } from "@/stores/chunkStore";
 
 export default {
-  name: 'ChunkListPanel',
+  name: "ChunkListPanel",
   props: {
     visible: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
-      filterType: 'all',
-      chunkStore: useChunkStore()
+      filterType: "all",
+      chunkStore: useChunkStore(),
     };
   },
   computed: {
@@ -97,19 +103,50 @@ export default {
     },
     filteredChunks() {
       return this.chunkStore.getChunksByType(this.filterType);
-    }
+    },
   },
   methods: {
     getTypeLabel(type) {
       const labels = {
-        collocation: 'collocation',
-        phrasal_verb: 'phrasal verbs',
-        idiom: 'idiom',
-        fixed_phrase: 'fixed phrase'
+        collocation: "collocation",
+        phrasal_verb: "phrasal verbs",
+        idiom: "idiom",
+        fixed_phrase: "fixed phrase",
+        // 增加對 pollution-chunks.csv 中出現類型的支援
+        noun_phrase: "noun phrase",
+        phrase: "phrase",
       };
       return labels[type] || type;
-    }
-  }
+    },
+
+    // 新增：語塊發音功能
+    speakText(text) {
+      if ("speechSynthesis" in window) {
+        const synth = window.speechSynthesis;
+        // 如果正在發音，先停止
+        if (synth.speaking) synth.cancel();
+
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = "en-US";
+        utter.rate = 0.9;
+
+        // 嘗試找到英文發音
+        const voices = synth.getVoices();
+        const enVoice =
+          voices.find((v) => v.lang.startsWith("en-") && v.default) ||
+          voices.find((v) => v.lang.startsWith("en"));
+
+        if (enVoice) {
+          utter.voice = enVoice;
+          utter.lang = enVoice.lang;
+        }
+
+        synth.speak(utter);
+      } else {
+        alert("抱歉，您的瀏覽器不支持語音合成功能 (Text-to-Speech)。");
+      }
+    },
+  },
 };
 </script>
 
@@ -248,6 +285,21 @@ export default {
   color: #333;
 }
 
+/* 新增發音按鈕樣式 */
+.speak-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #28a745; /* 綠色 */
+  padding: 0 0.5rem;
+  margin-left: auto; /* 將按鈕推到右邊 */
+}
+
+.speak-btn:hover {
+  opacity: 0.8;
+}
+
 .chunk-type-badge {
   font-size: 0.75rem;
   padding: 0.2rem 0.5rem;
@@ -274,6 +326,16 @@ export default {
 .badge-fixed_phrase {
   background: #f8d7da;
   color: #721c24;
+}
+
+.badge-noun_phrase {
+  background: #dee2e6;
+  color: #495057;
+}
+
+.badge-phrase {
+  background: #cce5ff;
+  color: #004085;
 }
 
 .chunk-explanation {
