@@ -2,8 +2,13 @@
   <div class="typing-practice">
     
     <div class="top-bar">
-      <div class="practice-count">練習次數：{{ practiceCount }}</div>
-      <button @click="$emit('close')" class="btn btn-danger">close</button>
+      <div class="practice-count">Practice times: {{ practiceCount }}</div>
+      <div class="top-buttons">
+        <button @click="toggleHelp" class="btn btn-warning">
+          {{ isKeyboardVisible ? 'Close Help' : 'Show Help' }}
+        </button>
+        <button @click="$emit('close')" class="btn btn-danger">Close</button>
+      </div>
     </div>
 
     <!-- 練習文字顯示 -->
@@ -18,7 +23,7 @@
     </div>
 
     <!-- 鍵盤圖示 (可選) -->
-    <div v-if="showKeyboard" class="keyboard-layout">
+    <div v-if="isKeyboardVisible" class="keyboard-layout">
       <div
         class="keyboard-row"
         v-for="(row, rowIndex) in keyboardRows"
@@ -29,7 +34,7 @@
           :key="key"
           :class="['key', getKeyClass(key)]"
         >
-          {{ key === ' ' ? 'rest' : key }}
+          {{ key === ' ' ? 'Space' : key }}
         </div>
       </div>
     </div>
@@ -54,7 +59,8 @@ export default {
       practiceText: "",
       currentIndex: 0,
       finished: false,
-      practiceCount: 0, // ✅ 新增練習次數
+      practiceCount: 0,
+      isKeyboardVisible: this.showKeyboard, // 用 data 控制顯示
       keyboardRows: [
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f̲", "g", "h", "j̲", "k", "l", ";"],
@@ -67,10 +73,13 @@ export default {
     text(newVal) {
       if (newVal && newVal.trim() !== "") {
         this.practiceText = newVal;
-        this.practiceCount = 0; // ✅ 新單字時重置練習次數
+        this.practiceCount = 0;
         this.restart();
       }
     },
+    showKeyboard(newVal) {
+      this.isKeyboardVisible = newVal;
+    }
   },
   computed: {
     currentChar() {
@@ -85,6 +94,9 @@ export default {
     window.removeEventListener("keydown", this.handleKeyInput);
   },
   methods: {
+    toggleHelp() {
+      this.isKeyboardVisible = !this.isKeyboardVisible;
+    },
     handleKeyInput(event) {
       if (this.finished) {
         if (event.code === "Space") {
@@ -107,7 +119,7 @@ export default {
     restart() {
       this.currentIndex = 0;
       this.finished = false;
-      this.practiceCount++; // ✅ 每次重新開始+1
+      this.practiceCount++;
     },
     getCharClass(index) {
       if (index < this.currentIndex) return "char typed correct";
@@ -130,14 +142,6 @@ export default {
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.practice-count {
-  text-align: center;
-  font-size: 18px;
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 10px;
 }
 
 /* 文字顯示區 */
@@ -187,13 +191,6 @@ export default {
 }
 
 /* 控制按鈕 */
-.controls {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 10px;
-}
-
 .btn {
   padding: 10px 20px;
   border: none;
@@ -201,12 +198,14 @@ export default {
   font-size: 16px;
   cursor: pointer;
   font-weight: 600;
+  transition: opacity 0.2s;
 }
 
-.btn-primary {
-  background: #3498db;
+.btn-warning {
+  background: #f39c12;
   color: white;
 }
+
 .btn-danger {
   background: #e74c3c;
   color: white;
@@ -222,6 +221,7 @@ export default {
   padding: 20px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
+  border: 1px solid #ddd;
 }
 
 .keyboard-row {
@@ -261,7 +261,7 @@ export default {
 
 .top-bar {
   display: flex;
-  justify-content: space-between; /* 左右分開 */
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
@@ -272,18 +272,8 @@ export default {
   color: #555;
 }
 
-.btn-danger {
-  background: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.btn-danger:hover {
-  opacity: 0.9;
+.top-buttons {
+  display: flex;
+  gap: 10px;
 }
 </style>
